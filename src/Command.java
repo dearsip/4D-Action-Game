@@ -935,5 +935,25 @@ public class Command {
       }
    }
 
+   public static class FinishInfo implements ICommand {
+     public void exec(Context c) throws Exception {
+       Struct.FinishInfo fi = new Struct.FinishInfo();
+       double[] fn = (double[]) c.stack.pop();
+       int[] fni = new int[fn.length];
+       double[][] d = new double[fn.length][];
+       for (int i=0;i<fn.length;i++) {
+         fni[i] = (int)fn[i];
+         d[i] = new double[2];
+         d[i][0] = fn[i]+0.25;
+         d[i][1] = fn[i]+0.75;
+       }
+       Geom.Shape s = GeomUtil.rect(d);
+       s.setShapeColor(Color.yellow);
+       s.glass();
+       c.stack.push(s);
+       fi.finish = fni;
+       c.stack.push(fi);
+     }
+   }
 }
 

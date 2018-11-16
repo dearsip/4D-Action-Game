@@ -198,6 +198,8 @@ public class DefaultContext {
       c.dict.put("white",Color.white);
       c.dict.put("brown",new Color(128,96,0));
 
+      c.dict.put("finishinfo",new Command.FinishInfo());
+
       return c;
    }
 

@@ -46,25 +46,25 @@ public class KeyMapper {
 
       // add these first, so that although they're hard-coded,
       // they can at least be overwritten
-      add(new Key(88,0),KeyBuffer.getKeyNew(0)); // x
-      add(new Key(67,0),KeyBuffer.getKeyNew(1)); // c
-      add(new Key(86,0),KeyBuffer.getKeyNew(2)); // v
-      add(new Key(81,0),KeyBuffer.getKeyNew(3)); // q
-      add(new Key(65,0),KeyBuffer.getKeyNew(4)); // a
-      add(new Key(32,0),KeyBuffer.getKeyNew(5)); // space
-      add(new Key(82,2),KeyBuffer.getKeyNew(6)); // control r
-      add(new Key(70,2),KeyBuffer.getKeyNew(7)); // control f
-      add(new Key(87,2),KeyBuffer.getKeyNew(8)); // control w
-      add(new Key(83,2),KeyBuffer.getKeyNew(9)); // control s
-      add(new Key(KeyEvent.VK_INSERT,0),KeyBuffer.getKeyNew(10)); // insert
-      add(new Key(KeyEvent.VK_DELETE,0),KeyBuffer.getKeyNew(11)); // delete
-      add(new Key(KeyEvent.VK_INSERT,1),KeyBuffer.getKeyNew(12)); // shift insert
-      add(new Key(KeyEvent.VK_PAGE_UP,  0),KeyBuffer.getKeyNew(13)); // page up
-      add(new Key(KeyEvent.VK_PAGE_DOWN,0),KeyBuffer.getKeyNew(14)); // page dn
-      add(new Key(78,2),KeyBuffer.getKeyNew(15)); // control n
-      add(new Key(72,2),KeyBuffer.getKeyNew(16)); // control h
-      add(new Key(80,0),KeyBuffer.getKeyNew(17)); // p
-      add(new Key(80,1),KeyBuffer.getKeyNew(18)); // shift p
+      add(new Key(KeyEvent.VK_X,0),KeyBuffer.getKeyNew(0));
+      add(new Key(KeyEvent.VK_C,0),KeyBuffer.getKeyNew(1));
+      add(new Key(KeyEvent.VK_V,0),KeyBuffer.getKeyNew(2));
+      add(new Key(KeyEvent.VK_B,0),KeyBuffer.getKeyNew(3));
+      add(new Key(KeyEvent.VK_Q,2),KeyBuffer.getKeyNew(4));
+      add(new Key(KeyEvent.VK_SPACE,0),KeyBuffer.getKeyNew(5));
+      add(new Key(KeyEvent.VK_R,2),KeyBuffer.getKeyNew(6));
+      add(new Key(KeyEvent.VK_F,2),KeyBuffer.getKeyNew(7));
+      add(new Key(KeyEvent.VK_S,2),KeyBuffer.getKeyNew(8));
+      add(new Key(KeyEvent.VK_T,2),KeyBuffer.getKeyNew(9));
+      add(new Key(KeyEvent.VK_I,2),KeyBuffer.getKeyNew(10));
+      add(new Key(KeyEvent.VK_D,2),KeyBuffer.getKeyNew(11));
+      add(new Key(KeyEvent.VK_I,3),KeyBuffer.getKeyNew(12));
+      add(new Key(KeyEvent.VK_K,2),KeyBuffer.getKeyNew(13));
+      add(new Key(KeyEvent.VK_J,2),KeyBuffer.getKeyNew(14));
+      add(new Key(KeyEvent.VK_N,2),KeyBuffer.getKeyNew(15));
+      add(new Key(KeyEvent.VK_H,2),KeyBuffer.getKeyNew(16));
+      add(new Key(KeyEvent.VK_P,2),KeyBuffer.getKeyNew(17));
+      add(new Key(KeyEvent.VK_P,3),KeyBuffer.getKeyNew(18));
 
       for (int i=0; i<OptionsKeys.NKEY; i++) {
          add(ok .key[i],KeyBuffer.getKeyID(i));

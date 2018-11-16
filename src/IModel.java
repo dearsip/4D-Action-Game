@@ -28,6 +28,7 @@ public interface IModel {
    final int SAVE_NONE = 0;
    final int SAVE_MAZE = 1;
    final int SAVE_GEOM = 2;
+   final int SAVE_ACTION = 3;
 
 }
 

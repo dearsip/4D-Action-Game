@@ -27,5 +27,6 @@ public interface IKeysNew {
    boolean canAddShapes(); // not a command
    boolean canPaint();
 
+   void jump();
 }
 

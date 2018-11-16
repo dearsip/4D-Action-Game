@@ -17,7 +17,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
 // --- fields ---
 
    private int dim;
-   private Geom.Shape[] shapes;
+   protected Geom.Shape[] shapes;
    private Vector scenery;
    private boolean[] texture;
    private LineBuffer buf;
@@ -34,10 +34,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    private Struct.ViewInfo viewInfo;
 
    private double[] origin;
-   private double[] reg1;
-   private double[] reg2;
-   private Clip.Result clipResult;
-   private IDraw currentDraw;
+   protected double[] reg1;
+   protected double[] reg2;
+   protected Clip.Result clipResult;
+   protected IDraw currentDraw;
 
    private Vector availableColors;
    private Vector availableShapes;
@@ -488,6 +488,9 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       }
    }
 
+   public void jump() {
+   }
+
 // --- implementation of ISelectShape ---
 
    // the first two aren't in the interface,
@@ -733,6 +736,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    }
 
    public void render(double[] origin) {
+     renderer(origin);
+   }
+
+   protected void renderer(double[] origin) {
       buf.clear();
       Vec.copy(this.origin,origin);
 
