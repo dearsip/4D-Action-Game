@@ -329,12 +329,13 @@ public class Maze extends JFrame implements SquareLayout.Observer, IDisplay, IMe
          // (and probably faster for sorting)
          String[] name = new String[f.length];
          for (int i=0; i<f.length; i++) name[i] = f[i].getName();
-         Arrays.sort(name);
+         String[] sortedName = name.clone();
+         Arrays.sort(sortedName);
 
-         int i = findName(name,reloadFile.getName());
+         int i = findName(sortedName,reloadFile.getName());
          if (i != -1) {
             i += delta;
-            if (i >= 0 && i < f.length) reloadFile = f[i];
+            if (i >= 0 && i < f.length) reloadFile = f[findName(name,sortedName[i])];
             else return; // we're at the end, don't do a reload
          }
          // else not found, fall through and report that error
