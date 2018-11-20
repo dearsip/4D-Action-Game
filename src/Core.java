@@ -355,6 +355,8 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
       }
       model.setTexture(texture);
 
+      model.setDepth(ov().depth);
+
       // model already constructed
       engine.newGame(dim,model,ov(),oa.opt.os,true);
 

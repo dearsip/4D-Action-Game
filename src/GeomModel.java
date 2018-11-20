@@ -18,9 +18,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
 
    private int dim;
    protected Geom.Shape[] shapes;
+   private boolean[] shapesVis;
    private Vector scenery;
    private boolean[] texture;
-   private LineBuffer buf;
+   protected LineBuffer buf;
    private Clip.Draw[] clipUnits;
    private boolean[][] inFront;
    private Geom.Separator[][] separators;
@@ -33,11 +34,12 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    private Struct.DrawInfo drawInfo;
    private Struct.ViewInfo viewInfo;
 
+   private int depth;
    private double[] origin;
    protected double[] reg1;
    protected double[] reg2;
    protected Clip.Result clipResult;
-   protected IDraw currentDraw;
+   private IDraw currentDraw;
 
    private Vector availableColors;
    private Vector availableShapes;
@@ -58,6 +60,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
 
       this.dim = dim;
       this.shapes = shapes;
+      shapesVis = new boolean[shapes.length];
       scenery = new Vector();
       this.texture = new boolean[10];
       // we'll receive a setTexture call later
@@ -667,6 +670,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    }
 
    public void setDepth(int depth) {
+     this.depth = depth;
    }
 
    public boolean[] getDesiredTexture() { // also not in IModel
@@ -681,6 +685,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    }
 
    public void setOptions(OptionsColor oc, long seed, int depth, boolean[] texture) {
+      setDepth(depth);
       setTexture(texture);
    }
 
@@ -742,12 +747,18 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    protected void renderer(double[] origin) {
       buf.clear();
       Vec.copy(this.origin,origin);
+      for (int i=0; i<shapes.length; i++) {
+         shapesVis[i] = true;
+         if (shapes[i] == null) shapesVis[i] = false;
+         Vec.sub(reg1,origin,shapes[i].shapecenter);
+         if (Vec.norm(reg1) > depth) shapesVis[i] = false;
+      }
 
       // calcViewBoundaries is expensive, but we always need the boundaries
       // to draw the scenery correctly
       currentDraw = buf;
       for (int i=0; i<shapes.length; i++) {
-         if (shapes[i] == null) continue;
+         if (!shapesVis[i]) continue;
          calcVisShape(shapes[i]);
          clipUnits[i].setBoundaries(Clip.calcViewBoundaries(origin,shapes[i]));
          currentDraw = clipUnits[i].chain(currentDraw); // set up for floor drawing
@@ -761,10 +772,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       calcInFront();
 
       for (int i=0; i<shapes.length; i++) {
-         if (shapes[i] == null) continue;
+         if (!shapesVis[i]) continue;
          currentDraw = buf;
          for (int h=0; h<shapes.length; h++) {
-            if (shapes[h] == null) continue;
+            if (!shapesVis[h]) continue;
             if (inFront[h][i]) currentDraw = clipUnits[h].chain(currentDraw);
          }
          drawShape(shapes[i]);
