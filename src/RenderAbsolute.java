@@ -174,6 +174,24 @@ public class RenderAbsolute {
       addLine(p1,p2,color);
    }
 
+   private void addCross(int[] p, int dir, Color color) {
+      int a = Dir.getAxis(dir);
+
+      Grid.fromCell(reg1,p);
+      Dir.apply(dir,reg1,0.5);
+
+      Vec.copy(reg2,reg1);
+
+      for (int i=1; i<dim; i++) {
+         int aa = (a + i) % dim;
+         reg1[aa] -= 0.5;
+         reg2[aa] += 0.5;
+         addLine(reg1,reg2,color);
+         reg1[aa] += 0.5;
+         reg2[aa] -= 0.5;
+      }
+   }
+
    private void addTexture(int[] p, int dir, Color color, double edge) {
       int a = Dir.getAxis(dir);
 
@@ -246,7 +264,10 @@ public class RenderAbsolute {
             draw = true;
          }
 
-         if (draw) addTexture(p,dir,c,0.1*i);
+         if (draw) {
+            if (i == 1) addCross(p,dir,c);
+            else addTexture(p,dir,c,0.1*i);
+         }
       }
    }
 
