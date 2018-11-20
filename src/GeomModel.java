@@ -20,7 +20,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    protected Geom.Shape[] shapes;
    private Vector scenery;
    private boolean[] texture;
-   private LineBuffer buf;
+   protected LineBuffer buf;
    private Clip.Draw[] clipUnits;
    private boolean[][] inFront;
    private Geom.Separator[][] separators;
@@ -37,7 +37,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    protected double[] reg1;
    protected double[] reg2;
    protected Clip.Result clipResult;
-   protected IDraw currentDraw;
+   private IDraw currentDraw;
 
    private Vector availableColors;
    private Vector availableShapes;

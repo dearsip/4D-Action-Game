@@ -99,7 +99,7 @@ public class ActionModel extends GeomModel {
       Vec.add(reg1,origin,foot.vertex[edge.iv1]);
       Vec.add(reg2,origin,foot.vertex[edge.iv2]);
 
-      currentDraw.drawLine(reg1,reg2,c,reg3);
+      buf.drawLine(reg1,reg2,c,reg3);
     }
   }
 
