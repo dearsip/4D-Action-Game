@@ -199,9 +199,9 @@ public class DefaultContext {
       c.dict.put("brown",new Color(128,96,0));
 
       c.dict.put("finishinfo",new Command.FinishInfo());
+      c.dict.put("blockinfo",new Command.BlockInfo());
 
       return c;
    }
 
 }
-

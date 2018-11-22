@@ -89,7 +89,7 @@ public class Engine implements IMove {
       axis = new double[dimSpace][dimSpace];
       initPlayer();
 
-      if (getSaveType() == IModel.SAVE_ACTION) ((ActionModel)model).setEngine(this);
+      if (getSaveType() == IModel.SAVE_ACTION || getSaveType() == IModel.SAVE_BLOCK) ((ActionModel)model).setEngine(this);
 
       sraxis = new double[dimSpace][dimSpace];
       nonFisheyeRetina = ov.retina;
@@ -352,10 +352,10 @@ public class Engine implements IMove {
 
    public boolean canMove(int a, double d) {
 
-     if (getSaveType() != IModel.SAVE_ACTION) {
-       Vec.addScaled(reg3,origin,axis[a],d);
-       if ( ! model.canMove(origin,reg3,reg1,reg4) ) return false;
-     }
+      if (getSaveType() != IModel.SAVE_ACTION && getSaveType() != IModel.SAVE_BLOCK) {
+         Vec.addScaled(reg3,origin,axis[a],d);
+         if ( ! model.canMove(origin,reg3,reg1,reg4) ) return false;
+      }
 
       return true;
    }
@@ -365,67 +365,67 @@ public class Engine implements IMove {
    }
 
    public void move(int a, double d) {
-     final double epsilon = 0.00001;
-     if (getSaveType() != IModel.SAVE_ACTION)
-       Vec.addScaled(origin,origin,axis[a],d);
-     else {
-       if (a==1) return;
-       Vec.unitVector(reg3,1);
-       double e = Vec.dot(reg3,axis[a]);
-       Vec.addScaled(reg3,axis[a],reg3,-e);
-       Vec.normalize(reg3,reg3);
-       Vec.scale(reg3,reg3,d);
-       Vec.add(reg3,origin,reg3);
-       if (model.canMove(origin,reg3,reg1,reg4)) {
-         Vec.copy(origin,reg3);
-       } else { // not functioning (climing)
-         Clip.Result clipResult = ((ActionModel)model).getResult();
-         System.out.println(clipResult.ib);
-         int ib = clipResult.ib;
+      final double epsilon = 0.00001;
+      if (getSaveType() != IModel.SAVE_ACTION && getSaveType() != IModel.SAVE_BLOCK)
+         Vec.addScaled(origin,origin,axis[a],d);
+      else {
+         if (a==1) return;
          Vec.unitVector(reg3,1);
-         Vec.addScaled(reg3,origin,reg3,(d>0) ? d : -d);
-         if ((Clip.clip(origin,reg3,((GeomModel)model).retrieveShapes()[ib],clipResult) & Clip.KEEP_B) != 0) {
-           Vec.unitVector(reg3,1);
-           System.out.println(clipResult.b);
-           Vec.addScaled(origin,origin,reg3,fall*clipResult.b + epsilon);
+         double e = Vec.dot(reg3,axis[a]);
+         Vec.addScaled(reg3,axis[a],reg3,-e);
+         Vec.normalize(reg3,reg3);
+         Vec.scale(reg3,reg3,d);
+         Vec.add(reg3,origin,reg3);
+         if (model.canMove(origin,reg3,reg1,reg4)) {
+            Vec.copy(origin,reg3);
+         } else { // not functioning (climing)
+            Clip.Result clipResult = ((ActionModel)model).getResult();
+            System.out.println(clipResult.ib);
+            int ib = clipResult.ib;
+            Vec.unitVector(reg3,1);
+            Vec.addScaled(reg3,origin,reg3,(d>0) ? d : -d);
+            if ((Clip.clip(origin,reg3,((GeomModel)model).retrieveShapes()[ib],clipResult) & Clip.KEEP_B) != 0) {
+               Vec.unitVector(reg3,1);
+               System.out.println(clipResult.b);
+               Vec.addScaled(origin,origin,reg3,fall*clipResult.b + epsilon);
+            }
          }
-       }
-     }
+      }
    }
 
    public void rotateAngle(int a1, int a2, double theta) {
-     if (getSaveType() != IModel.SAVE_ACTION)
-      Vec.rotateAngle(axis[a1],axis[a2],axis[a1],axis[a2],theta);
-     else {
-       final double epsilon = 0.000001;
-       int dim = origin.length;
-       if (a2==1) {
-         if (a1!=dim-1) return;
-         Vec.copy(reg3,axis[a1]);
-         Vec.copy(reg4,axis[a2]);
+      if (getSaveType() != IModel.SAVE_ACTION && getSaveType() != IModel.SAVE_BLOCK)
          Vec.rotateAngle(axis[a1],axis[a2],axis[a1],axis[a2],theta);
-         if (axis[a2][1] < epsilon) {
-           Vec.copy(axis[a1],reg3);
-           Vec.copy(axis[a2],reg4);
+      else {
+         final double epsilon = 0.000001;
+         int dim = origin.length;
+         if (a2==1) {
+            if (a1!=dim-1) return;
+            Vec.copy(reg3,axis[a1]);
+            Vec.copy(reg4,axis[a2]);
+            Vec.rotateAngle(axis[a1],axis[a2],axis[a1],axis[a2],theta);
+            if (axis[a2][1] < epsilon) {
+               Vec.copy(axis[a1],reg3);
+               Vec.copy(axis[a2],reg4);
+            }
+         } else {
+            double asin = Math.toDegrees(Math.asin(axis[a1][1]));
+            if (a1==dim-1) {
+               Vec.rotateAngle(axis[1],axis[a1],axis[1],axis[a1],asin);
+            }
+            Vec.rotateAngle(axis[a1],axis[a2],axis[a1],axis[a2],theta);
+            if (a1==dim-1) {
+               Vec.rotateAngle(axis[a1],axis[1],axis[a1],axis[1],asin);
+            }
          }
-       } else {
-         double asin = Math.toDegrees(Math.asin(axis[a1][1]));
-         if (a1==dim-1) {
-           Vec.rotateAngle(axis[1],axis[a1],axis[1],axis[a1],asin);
-         }
-         Vec.rotateAngle(axis[a1],axis[a2],axis[a1],axis[a2],theta);
-         if (a1==dim-1) {
-           Vec.rotateAngle(axis[a1],axis[1],axis[a1],axis[1],asin);
-         }
-       }
-     }
+      }
    }
 
    public Align align() {
-     if (getSaveType() != IModel.SAVE_ACTION) {
-       return new Align(origin,axis);
-     }
-     return null;
+      if (getSaveType() != IModel.SAVE_ACTION && getSaveType() != IModel.SAVE_BLOCK) {
+         return new Align(origin,axis);
+      }
+      return null;
    }
 
    public boolean isAligned() {
@@ -457,34 +457,34 @@ public class Engine implements IMove {
    private final double height = 0.25;
 
    public void jump() {
-     final double epsilon = 0.001;
-     Vec.unitVector(reg3,1);
-     Vec.addScaled(reg3,origin,reg3,-epsilon);
-     if (! model.canMove(origin,reg3,reg1,reg4) || reg3[1]<0) fall = height;
+      final double epsilon = 0.001;
+      Vec.unitVector(reg3,1);
+      Vec.addScaled(reg3,origin,reg3,-epsilon);
+      if (! model.canMove(origin,reg3,reg1,reg4) || reg3[1]<0) fall = height;
    }
 
    public void fall() {
-     final double epsilon = 0.00001;
-     fall -= gravity;
-     Vec.unitVector(reg3,1);
-     Vec.addScaled(reg3,origin,reg3,fall);
-     if (reg3[1] < epsilon) {
-       fall = 0;
-       origin[1] = epsilon;
-       return;
-     }
-     if (model.canMove(origin,reg3,reg1,reg4)) {
-       Vec.copy(origin,reg3);
-       if (atFinish()) win = true;
-     } else {
-       clipResult = ((ActionModel)model).getResult();
-       Vec.unitVector(reg3,1);
-       Vec.addScaled(origin,origin,reg3,fall*clipResult.a + ((fall>0) ? -epsilon : epsilon));
-       fall = 0;
-     }
+      final double epsilon = 0.00001;
+      fall -= gravity;
+      Vec.unitVector(reg3,1);
+      Vec.addScaled(reg3,origin,reg3,fall);
+      if (reg3[1] < epsilon) {
+         fall = 0;
+         origin[1] = epsilon;
+         return;
+      }
+      if (model.canMove(origin,reg3,reg1,reg4)) {
+         Vec.copy(origin,reg3);
+         if (atFinish()) win = true;
+      } else {
+         clipResult = ((ActionModel)model).getResult();
+         Vec.unitVector(reg3,1);
+         Vec.addScaled(origin,origin,reg3,fall*clipResult.a + ((fall>0) ? -epsilon : epsilon));
+         fall = 0;
+      }
    }
 
-// --- rendering ---
+   // --- rendering ---
 
    public void renderAbsolute() {
       model.animate();
@@ -599,17 +599,17 @@ public class Engine implements IMove {
       displayInterface.nextFrame();
    }
 
-// --- fixed objects ---
+   // --- fixed objects ---
 
    private static final double[][] objRetina2 = new double[][] {
-         {-1,-1}, { 1,-1},
+      {-1,-1}, { 1,-1},
          { 1,-1}, { 1, 1},
          { 1, 1}, {-1, 1},
          {-1, 1}, {-1,-1}
-      };
+   };
 
    private static final double[][] objRetina3 = new double[][] {
-         {-1,-1,-1}, { 1,-1,-1},
+      {-1,-1,-1}, { 1,-1,-1},
          { 1,-1,-1}, { 1, 1,-1},
          { 1, 1,-1}, {-1, 1,-1},
          {-1, 1,-1}, {-1,-1,-1},
@@ -623,23 +623,23 @@ public class Engine implements IMove {
          { 1,-1,-1}, { 1,-1, 1},
          { 1, 1,-1}, { 1, 1, 1},
          {-1, 1,-1}, {-1, 1, 1}
-      };
+   };
 
    private static final double B = 0.04;
    private static final double[][] objCross2 = new double[][] {
-         {-B, 0}, { B, 0},
+      {-B, 0}, { B, 0},
          { 0,-B}, { 0, B}
-      };
+   };
 
    private static final double C = 0.1;
    private static final double[][] objCross3 = new double[][] {
-         {-C, 0, 0}, { C, 0, 0},
+      {-C, 0, 0}, { C, 0, 0},
          { 0,-C, 0}, { 0, C, 0},
          { 0, 0,-C}, { 0, 0, C}
-      };
+   };
 
    private static final double[][] objWin2 = new double[][] {
-         {-0.8, 0.4}, {-0.8,-0.4},
+      {-0.8, 0.4}, {-0.8,-0.4},
          {-0.8,-0.4}, {-0.6, 0  },
          {-0.6, 0  }, {-0.4,-0.4},
          {-0.4,-0.4}, {-0.4, 0.4},
@@ -651,10 +651,10 @@ public class Engine implements IMove {
          { 0.4,-0.4}, { 0.4, 0.4},
          { 0.4, 0.4}, { 0.8,-0.4},
          { 0.8,-0.4}, { 0.8, 0.4}
-      };
+   };
 
    private static final double[][] objWin3 = new double[][] {
-         {-0.8, 0.4,1}, {-0.8,-0.4,1},
+      {-0.8, 0.4,1}, {-0.8,-0.4,1},
          {-0.8,-0.4,1}, {-0.6, 0,  1},
          {-0.6, 0,  1}, {-0.4,-0.4,1},
          {-0.4,-0.4,1}, {-0.4, 0.4,1},
@@ -666,7 +666,7 @@ public class Engine implements IMove {
          { 0.4,-0.4,1}, { 0.4, 0.4,1},
          { 0.4, 0.4,1}, { 0.8,-0.4,1},
          { 0.8,-0.4,1}, { 0.8, 0.4,1}
-      };
+   };
 
 }
 

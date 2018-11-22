@@ -211,6 +211,7 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
       Struct.DrawInfo drawInfo = null;
 
       Struct.FinishInfo finishInfo = null;
+      Struct.BlockInfo blockInfo = null;
 
    // scan for items
 
@@ -248,6 +249,8 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
          } else if (o instanceof Struct.FinishInfo) {
             if (finishInfo != null) throw new Exception("Only one finishInfo command allowed.");
             finishInfo = (Struct.FinishInfo) o;
+         } else if (o instanceof Struct.BlockInfo) {
+            blockInfo = (Struct.BlockInfo) o;
          } else {
             throw new Exception("Unused object on stack (" + o.getClass().getName() + ").");
          }
@@ -269,6 +272,7 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
 
       GeomModel model;
       if (finishInfo != null) model = new ActionModel(dtemp,shapes,drawInfo,viewInfo,finishInfo); 
+      else if (blockInfo != null) model = new BlockModel(dtemp,shapes,drawInfo,viewInfo);
       else model = (track != null) ? new TrainModel(dtemp,shapes,drawInfo,viewInfo,track,trains)
                                              : new GeomModel (dtemp,shapes,drawInfo,viewInfo);
       model.addAllScenery(scenery);

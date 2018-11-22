@@ -955,5 +955,11 @@ public class Command {
        c.stack.push(fi);
      }
    }
+
+   public static class BlockInfo implements ICommand {
+     public void exec(Context c) throws Exception {
+        c.stack.push(new Struct.BlockInfo());
+     }
+   }
 }
 

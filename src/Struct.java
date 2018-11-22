@@ -45,5 +45,7 @@ public class Struct {
 
      public int[] finish;
    }
-}
 
+// --- block info ---
+   public static class BlockInfo {}
+}

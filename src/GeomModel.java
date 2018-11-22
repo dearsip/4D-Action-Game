@@ -16,16 +16,16 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
 
 // --- fields ---
 
-   private int dim;
+   protected int dim;
    protected Geom.Shape[] shapes;
    private Vector scenery;
    private boolean[] texture;
    protected LineBuffer buf;
-   private Clip.Draw[] clipUnits;
+   protected Clip.Draw[] clipUnits;
    private boolean[][] inFront;
    private Geom.Separator[][] separators;
    private boolean useEdgeColor;
-   private Geom.Shape selectedShape;
+   protected Geom.Shape selectedShape;
    private int[] axisDirection; // direction of each axis, chosen when shape selected
    private boolean useSeparation;
    private boolean invertNormals;
@@ -42,7 +42,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    private Vector availableColors;
    private Vector availableShapes;
    private Color      addColor;
-   private Geom.Shape addShape;
+   protected Geom.Shape addShape;
    private Color paintColor;
    private int   paintMode; // default 0, correct
 
@@ -50,7 +50,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    private HashMap colorNames;
    private HashMap idealNames;
 
-   private int faceNumber; // extra result from findShape
+   protected int faceNumber; // extra result from findShape
 
 // --- construction ---
 
@@ -132,7 +132,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       }
    }
 
-   private void clearSeparators(int i) {
+   protected void clearSeparators(int i) {
       // not worth checking for removed shapes
       for (int j=0;   j<i;             j++) separators[j][i] = null;
       for (int j=i+1; j<shapes.length; j++) separators[i][j] = null;
@@ -180,7 +180,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       return (shape.systemMove || shape == selectedShape);
    }
 
-   private int indexOf(Geom.Shape shape) {
+   protected int indexOf(Geom.Shape shape) {
       // not worth checking for removed shapes
       for (int i=0; i<shapes.length; i++) {
          if (shapes[i] == shape) return i;
@@ -319,7 +319,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       useSeparation = ! useSeparation;
    }
 
-   private int countSlots() {
+   protected int countSlots() {
       int count = 0;
       for (int i=0; i<shapes.length; i++) {
          if (shapes[i] == null) count++;
@@ -327,14 +327,14 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       return count;
    }
 
-   private int findSlot(int i) {
+   protected int findSlot(int i) {
       for ( ; i<shapes.length; i++) {
          if (shapes[i] == null) return i;
       }
       return -1; // shouldn't happen
    }
 
-   private void reallocate(int len) {
+   protected void reallocate(int len) {
 
       // if one insert is happening, there will probably
       // be more eventually, so allocate in blocks of 10

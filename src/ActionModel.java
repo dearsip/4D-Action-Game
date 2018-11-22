@@ -10,14 +10,14 @@ import java.awt.Color;
 
 public class ActionModel extends GeomModel {
 
-  private double[] reg3;
-  private Engine engine;
+  protected double[] reg3;
+  protected Engine engine;
   private int[] finish;
   private Geom.Texture foot;
 
   public ActionModel(int dim, Geom.Shape[] shapes, Struct.DrawInfo drawInfo, Struct.ViewInfo viewInfo, Struct.FinishInfo finishInfo) throws Exception {
     super(dim, shapes, drawInfo, viewInfo);
-    this.finish = finishInfo.finish;
+    if (finishInfo != null) this.finish = finishInfo.finish;
     reg3 = new double[dim];
 
     foot = (dim==3) ? setFoot3() : setFoot4();
@@ -28,36 +28,6 @@ public class ActionModel extends GeomModel {
   }
 
 // --- implementation of IKeysNew ---
-
-  public IMove click(double[] origin, double[] viewAxis, double[][] axisArray) {
-    return null;
-  }
-
-  public void scramble(boolean alignMode, double[] origin) {
-  }
-
-  public void toggleSeparation() {
-  }
-
-  public boolean canAddShapes() {
-    return false;
-  }
-
-  public void addShapes(int quantity, boolean alignMode, double[] origin, double[] viewAxis) {
-  }
-
-  public void removeShape(double[] origin, double[] viewAxis) {
-  }
-
-  public void toggleNormals() {
-  }
-
-  public boolean canPaint() {
-    return false;
-  }
-
-  public void paint(double[] origin, double[] viewAxis) {
-  }
 
   public void jump() {
     engine.jump();
