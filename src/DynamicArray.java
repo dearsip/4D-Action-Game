@@ -197,5 +197,46 @@ public class DynamicArray {
       }
    }
 
+// --- Faces (for CraftModel) ---
+
+   public static class OfFace {
+
+   // --- fields ---
+
+      private int dim;
+      private int[] limits;
+      private Object data;
+
+   // --- construction ---
+
+      public OfFace(int dim, int[] limits) {
+         this.dim = dim;
+         this.limits = limits;
+         if (dim == 3) {
+            data = new boolean[limits[0]][limits[1]][limits[2]][2*dim];
+         } else {
+            data = new boolean[limits[0]][limits[1]][limits[2]][limits[3]][2*dim];
+         }
+      }
+
+   // --- accessors ---
+
+      public boolean get(int[] p, int d) {
+         if (dim == 3) {
+            return ((boolean[][][][]) data)[p[0]][p[1]][p[2]][d];
+         } else {
+            return ((boolean[][][][][]) data)[p[0]][p[1]][p[2]][p[3]][d];
+         }
+      }
+
+      public void set(int[] p, int d, boolean b) {
+         if (dim == 3) {
+            ((boolean[][][]) data)[p[0]][p[1]][p[2]][d] = b;
+         } else {
+            ((boolean[][][][]) data)[p[0]][p[1]][p[2]][p[3]][d] = b;
+         }
+      }
+   }
+
 }
 
