@@ -378,16 +378,17 @@ public class Engine implements IMove {
          Vec.add(reg3,origin,reg3);
          if (model.canMove(origin,reg3,reg1,reg4)) {
             Vec.copy(origin,reg3);
-         } else { // not functioning (climing)
-            Clip.Result clipResult = ((ActionModel)model).getResult();
-            System.out.println(clipResult.ib);
-            int ib = clipResult.ib;
-            Vec.unitVector(reg3,1);
-            Vec.addScaled(reg3,origin,reg3,(d>0) ? d : -d);
-            if ((Clip.clip(origin,reg3,((GeomModel)model).retrieveShapes()[ib],clipResult) & Clip.KEEP_B) != 0) {
-               Vec.unitVector(reg3,1);
-               System.out.println(clipResult.b);
-               Vec.addScaled(origin,origin,reg3,fall*clipResult.b + epsilon);
+         } else {
+            Clip.Result clipResult = new Clip.Result();
+            Vec.unitVector(reg4,1);
+            Vec.addScaled(reg4,reg3,reg4,Math.abs(d));
+            int result = Clip.clip(reg3,reg4,((GeomModel)model).getHitShape(),clipResult);
+            if ((result & Clip.KEEP_B) != 0) {
+               Vec.unitVector(reg4,1);
+               Vec.addScaled(origin,reg3,reg4,Math.abs(d)*clipResult.b + epsilon);
+            } else if (result == Clip.KEEP_LINE) {
+               Vec.unitVector(reg4,1);
+               Vec.addScaled(origin,reg3,reg4,Math.abs(d) + epsilon);
             }
          }
       }

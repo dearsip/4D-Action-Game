@@ -52,6 +52,8 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
 
    protected int faceNumber; // extra result from findShape
 
+   protected int shapeNumber; //extra result from canMove
+
 // --- construction ---
 
    public GeomModel(int dim, Geom.Shape[] shapes, Struct.DrawInfo drawInfo, Struct.ViewInfo viewInfo) throws Exception {
@@ -82,6 +84,8 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
 
       paintColor = Color.red; // annoying to have to set up every time
    }
+
+   public Geom.Shape getHitShape() { return shapes[shapeNumber]; }
 
    public int getDimension() { return dim; }
 
@@ -714,7 +718,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
          // prefilter by checking distance to shape against radius
          if (Clip.outsideRadius(p1,p2,shape)) continue;
 
-         if ((Clip.clip(p1,p2,shape,clipResult) & Clip.KEEP_A) != 0) return false;
+         if (Clip.clip(p1,p2,shape,clipResult) == Clip.KEEP_A) {
+            shapeNumber = i;
+            return false;
+         }
          // it's possible to get inside a block by aligning
          // or by placing blocks carelessly, so only exclude motion that enters
          // a block from outside.  this is all with respect to a single shape,
