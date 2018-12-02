@@ -961,5 +961,14 @@ public class Command {
         c.stack.push(new Struct.BlockInfo());
      }
    }
+
+   public static class NewEnemy implements ICommand {
+      public void exec(Context c) throws Exception {
+         int enemyType = toInt(c.stack.pop());
+         Geom.Shape shape = (Geom.Shape) c.stack.pop();
+         Enemy e = Enemy.createEnemy(shape,enemyType);
+         c.stack.push(e);
+      }
+   }
 }
 

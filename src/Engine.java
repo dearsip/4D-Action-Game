@@ -28,7 +28,7 @@ public class Engine implements IMove {
 
    private RenderRelative renderRelative;
 
-   private double[][] objRetina, objCross, objWin;
+   private double[][] objRetina, objCross, objWin, objDead;
 
    private Display[] display;
 
@@ -89,7 +89,9 @@ public class Engine implements IMove {
       axis = new double[dimSpace][dimSpace];
       initPlayer();
 
-      if (getSaveType() == IModel.SAVE_ACTION || getSaveType() == IModel.SAVE_BLOCK) ((ActionModel)model).setEngine(this);
+      if (getSaveType() == IModel.SAVE_ACTION
+       || getSaveType() == IModel.SAVE_BLOCK
+       || getSaveType() == IModel.SAVE_SHOOT) ((ActionModel)model).setEngine(this);
 
       sraxis = new double[dimSpace][dimSpace];
       nonFisheyeRetina = ov.retina;
@@ -107,10 +109,12 @@ public class Engine implements IMove {
          objRetina = objRetina2;
          objCross  = objCross2;
          objWin    = objWin2;
+         objDead   = objDead2;
       } else {
          objRetina = objRetina3;
          objCross  = objCross3;
          objWin    = objWin3;
+         objDead   = objDead3;
       }
 
       setDisplay(dimSpace,ov.scale,os,true);
@@ -352,7 +356,9 @@ public class Engine implements IMove {
 
    public boolean canMove(int a, double d) {
 
-      if (getSaveType() != IModel.SAVE_ACTION && getSaveType() != IModel.SAVE_BLOCK) {
+      if (getSaveType() != IModel.SAVE_ACTION
+       && getSaveType() != IModel.SAVE_BLOCK
+       && getSaveType() != IModel.SAVE_SHOOT) {
          Vec.addScaled(reg3,origin,axis[a],d);
          if ( ! model.canMove(origin,reg3,reg1,reg4) ) return false;
       }
@@ -366,7 +372,9 @@ public class Engine implements IMove {
 
    public void move(int a, double d) {
       final double epsilon = 0.00001;
-      if (getSaveType() != IModel.SAVE_ACTION && getSaveType() != IModel.SAVE_BLOCK)
+      if (getSaveType() != IModel.SAVE_ACTION
+       && getSaveType() != IModel.SAVE_BLOCK
+       && getSaveType() != IModel.SAVE_SHOOT)
          Vec.addScaled(origin,origin,axis[a],d);
       else {
          if (a==1) return;
@@ -380,13 +388,11 @@ public class Engine implements IMove {
             Vec.copy(origin,reg3);
          } else { // not functioning (climing)
             Clip.Result clipResult = ((ActionModel)model).getResult();
-            System.out.println(clipResult.ib);
             int ib = clipResult.ib;
             Vec.unitVector(reg3,1);
             Vec.addScaled(reg3,origin,reg3,(d>0) ? d : -d);
             if ((Clip.clip(origin,reg3,((GeomModel)model).retrieveShapes()[ib],clipResult) & Clip.KEEP_B) != 0) {
                Vec.unitVector(reg3,1);
-               System.out.println(clipResult.b);
                Vec.addScaled(origin,origin,reg3,fall*clipResult.b + epsilon);
             }
          }
@@ -394,7 +400,9 @@ public class Engine implements IMove {
    }
 
    public void rotateAngle(int a1, int a2, double theta) {
-      if (getSaveType() != IModel.SAVE_ACTION && getSaveType() != IModel.SAVE_BLOCK)
+      if (getSaveType() != IModel.SAVE_ACTION
+       && getSaveType() != IModel.SAVE_BLOCK
+       && getSaveType() != IModel.SAVE_SHOOT)
          Vec.rotateAngle(axis[a1],axis[a2],axis[a1],axis[a2],theta);
       else {
          final double epsilon = 0.000001;
@@ -422,7 +430,9 @@ public class Engine implements IMove {
    }
 
    public Align align() {
-      if (getSaveType() != IModel.SAVE_ACTION && getSaveType() != IModel.SAVE_BLOCK) {
+      if (getSaveType() != IModel.SAVE_ACTION
+       && getSaveType() != IModel.SAVE_BLOCK
+       && getSaveType() != IModel.SAVE_SHOOT) {
          return new Align(origin,axis);
       }
       return null;
@@ -471,17 +481,15 @@ public class Engine implements IMove {
       if (reg3[1] < epsilon) {
          fall = 0;
          origin[1] = epsilon;
-         return;
-      }
-      if (model.canMove(origin,reg3,reg1,reg4)) {
+      } else if (model.canMove(origin,reg3,reg1,reg4)) {
          Vec.copy(origin,reg3);
-         if (atFinish()) win = true;
       } else {
          clipResult = ((ActionModel)model).getResult();
          Vec.unitVector(reg3,1);
          Vec.addScaled(origin,origin,reg3,fall*clipResult.a + ((fall>0) ? -epsilon : epsilon));
          fall = 0;
       }
+      if (atFinish()) win = true;
    }
 
    // --- rendering ---
@@ -493,8 +501,12 @@ public class Engine implements IMove {
    }
 
    private void renderObject(LineBuffer buf, double[][] obj) {
+      renderObject(buf,obj,Color.white);
+   }
+
+   private void renderObject(LineBuffer buf, double[][] obj, Color color) {
       for (int i=0; i<obj.length; i+=2) {
-         buf.add(obj[i],obj[i+1],Color.white);
+         buf.add(obj[i],obj[i+1],color);
       }
    }
 
@@ -513,6 +525,7 @@ public class Engine implements IMove {
       }
 
       if (win) renderObject(bufRelative,objWin);
+      if (model.dead()) renderObject(bufRelative,objDead,Color.red);
 
       renderDisplay();
    }
@@ -667,6 +680,16 @@ public class Engine implements IMove {
          { 0.4, 0.4,1}, { 0.8,-0.4,1},
          { 0.8,-0.4,1}, { 0.8, 0.4,1}
    };
+
+   private static final double[][] objDead2 = new double[][] {
+      {-1,-1}, { 1, 1}, { 1,-1}, {-1, 1}
+   };
+
+   private static final double[][] objDead3 = new double[][] {
+      {-1,-1,-1}, { 1, 1, 1}, {-1,-1, 1}, { 1, 1,-1}, {-1, 1,-1}, { 1,-1, 1}, { 1,-1,-1}, {-1, 1, 1}
+   };
+
+;
 
 }
 

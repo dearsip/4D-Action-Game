@@ -2,6 +2,8 @@
  * Vec.java
  */
 
+import java.util.Random;
+
 /**
  * A utility class containing various operations on points and lines.
  * Except as noted, it is safe for the source and destination arrays to be the same.
@@ -353,5 +355,13 @@ public class Vec {
       return false;
    }
 
+// --- random ---
+
+   public static void randomNormalized(double[] dest, Random random) {
+      for (int i=0; i<dest.length; i++) {
+         dest[i] = 2*random.nextDouble()-1;
+      }
+      if (! normalizeTry(dest,dest)) unitVector(dest,0);
+   }
 }
 

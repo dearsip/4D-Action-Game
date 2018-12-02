@@ -88,6 +88,8 @@ public class MapModel implements IModel {
                || (dir != Dir.DIR_NONE && Grid.equals(reg2,map.getFinish()) ) );
    }
 
+   public boolean dead() { return false; }
+
    public void setBuffer(LineBuffer buf) {
       renderAbsolute.setBuffer(buf);
    }

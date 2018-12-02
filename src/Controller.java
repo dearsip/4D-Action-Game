@@ -338,7 +338,8 @@ public class Controller implements IClock {
       }
       public boolean canRun() {
          return ! alignMode && engine.getSaveType() != IModel.SAVE_ACTION
-                            && engine.getSaveType() != IModel.SAVE_BLOCK;
+                            && engine.getSaveType() != IModel.SAVE_BLOCK
+                            && engine.getSaveType() != IModel.SAVE_SHOOT;
       }
       public boolean isExclusive() {
          return true;
@@ -366,7 +367,8 @@ public class Controller implements IClock {
       }
       public boolean canRun() {
          return engine.getSaveType() != IModel.SAVE_ACTION
-             && engine.getSaveType() != IModel.SAVE_BLOCK;
+             && engine.getSaveType() != IModel.SAVE_BLOCK
+             && engine.getSaveType() != IModel.SAVE_SHOOT;
       }
       public boolean isExclusive() {
          return ! alignMode;
@@ -610,9 +612,6 @@ public class Controller implements IClock {
    }
 
    private class CommandScramble extends NewCommand {
-      public boolean canRun() {
-         return engine.getSaveType() != IModel.SAVE_ACTION;
-      }
       public boolean isExcluded() {
          return true;
          // scramble would interfere with motion in progress
@@ -624,9 +623,6 @@ public class Controller implements IClock {
    }
 
    private class CommandToggleSeparation extends NewCommand {
-      public boolean canRun() {
-         return engine.getSaveType() != IModel.SAVE_ACTION;
-      }
       public boolean run() {
          if (keysNew != null) keysNew.toggleSeparation();
          return false;
@@ -650,9 +646,6 @@ public class Controller implements IClock {
       private int quantity;
       public CommandAddShapes(int quantity) { this.quantity = quantity; }
 
-      public boolean canRun() {
-         return engine.getSaveType() != IModel.SAVE_ACTION;
-      }
       public boolean run() {
          if (keysNew != null && keysNew.canAddShapes()) {
             keysNew.addShapes(quantity,alignMode,engine.getOrigin(),engine.getViewAxis());
@@ -662,9 +655,6 @@ public class Controller implements IClock {
    }
 
    private class CommandRemoveShape extends NewCommand {
-      public boolean canRun() {
-         return engine.getSaveType() != IModel.SAVE_ACTION;
-      }
       public boolean run() {
          if (keysNew != null) keysNew.removeShape(engine.getOrigin(),engine.getViewAxis());
          return false;
@@ -672,9 +662,6 @@ public class Controller implements IClock {
    }
 
    private class CommandToggleNormals extends NewCommand {
-      public boolean canRun() {
-         return engine.getSaveType() != IModel.SAVE_ACTION;
-      }
       public boolean run() {
          if (keysNew != null) keysNew.toggleNormals();
          return false;
@@ -682,9 +669,6 @@ public class Controller implements IClock {
    }
 
    private class CommandToggleHideSel extends NewCommand {
-      public boolean canRun() {
-         return engine.getSaveType() != IModel.SAVE_ACTION;
-      }
       public boolean run() {
          if (keysNew != null) keysNew.toggleHideSel();
          return false;
@@ -702,9 +686,6 @@ public class Controller implements IClock {
    }
 
    private class CommandPaint extends NewCommand {
-      public boolean canRun() {
-         return engine.getSaveType() != IModel.SAVE_ACTION;
-      }
       public boolean run() {
          if (keysNew != null && keysNew.canPaint()) {
             keysNew.paint(engine.getOrigin(),engine.getViewAxis());

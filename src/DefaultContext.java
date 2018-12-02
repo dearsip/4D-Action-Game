@@ -175,6 +175,11 @@ public class DefaultContext {
       c.dict.put("w+",new Double(6));
       c.dict.put("w-",new Double(7));
 
+      c.dict.put("STAND",       new Double(Enemy.STAND      ));
+      c.dict.put("STAND_SHOOT", new Double(Enemy.STAND_SHOOT));
+      c.dict.put("WALK",        new Double(Enemy.WALK       ));
+      c.dict.put("WALK_SHOOT",  new Double(Enemy.WALK_SHOOT ));
+
       // have to be a little careful because these are 4D,
       // but they'll work in the situations I use them in.
       //
@@ -200,6 +205,8 @@ public class DefaultContext {
 
       c.dict.put("finishinfo",new Command.FinishInfo());
       c.dict.put("blockinfo",new Command.BlockInfo());
+
+      c.dict.put("enemy",new Command.NewEnemy());
 
       return c;
    }

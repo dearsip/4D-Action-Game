@@ -12,18 +12,12 @@ public class BlockModel extends ActionModel {
 
    private int[] reg4;
    private int[] reg5;
-   private Clip.CustomBoundaryList plane;
 
    public BlockModel(int dim, Geom.Shape[] shapes, Struct.DrawInfo drawInfo, Struct.ViewInfo viewInfo) throws Exception {
       super(dim, shapes, drawInfo, viewInfo, null);
       reg4 = new int[dim];
       reg5 = new int[dim];
       addShape = this.shapes[0].copy();
-
-      plane = new Clip.CustomBoundaryList();
-      double n3[] = {0.0, 1.0, 0.0};
-      double n4[] = {0.0, 1.0, 0.0, 0.0};
-      plane.addBoundary(new Clip.CustomBoundary((dim == 3) ? n3 : n4, 0.0));
    }
 
    // --- implementation of IKeysNew ---
@@ -41,9 +35,9 @@ public class BlockModel extends ActionModel {
       Vec.addScaled(reg3,origin,reg1,0.5);
       Geom.Shape colShape = findShape(reg3,viewAxis);
       if (colShape == null) {
-         Vec.addScaled(reg2,reg3,viewAxis,10000); // infinity
-         if ((Clip.clip(reg3,reg2,plane,clipResult) & Clip.KEEP_A) != 0) {
-            Vec.mid(reg2,reg3,reg2,clipResult.a);
+         Vec.addScaled(reg2,reg3,viewAxis,100);
+         if (reg2[1] < 0) {
+            Vec.mid(reg2,reg3,reg2,reg3[1]/(reg3[1]-reg2[1])-0.000001);
             Grid.toCell(reg4,reg4,reg2);
          } else return;
       } else {

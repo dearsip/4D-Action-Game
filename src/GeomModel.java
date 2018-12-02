@@ -33,7 +33,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    private Struct.DrawInfo drawInfo;
    private Struct.ViewInfo viewInfo;
 
-   private double[] origin;
+   protected double[] origin;
    protected double[] reg1;
    protected double[] reg2;
    protected Clip.Result clipResult;
@@ -51,6 +51,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    private HashMap idealNames;
 
    protected int faceNumber; // extra result from findShape
+   protected int shapeNumber; // extra result from canMove
 
 // --- construction ---
 
@@ -84,6 +85,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    }
 
    public int getDimension() { return dim; }
+
+   public Geom.Shape getHitShape() {
+      if (shapeNumber == -1) return null;
+      return shapes[shapeNumber]; }
 
    public void addScenery(IScenery o) {
       scenery.add(o);
@@ -594,7 +599,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       selectedShape.place(); // since we updated and failed
    }
 
-   private boolean isSeparated(Geom.Shape shape, double[] viewOrigin) {
+   public boolean isSeparated(Geom.Shape shape, double[] viewOrigin) {
 
       // not perfect collision detection yet, but it's not bad
       // what can you collide with?
@@ -696,7 +701,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
 
       if ( ! useSeparation ) return true;
 
-      if (p2[1] < 0 && p2[1] < p1[1]) return false; // solid floor
+      if (p2[1] < 0 && p2[1] < p1[1]) {
+         shapeNumber = -1;
+         return false; // solid floor
+      }
       // I once got to negative y by aligning while near the floor
 
       for (int i=0; i<shapes.length; i++) {
@@ -714,7 +722,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
          // prefilter by checking distance to shape against radius
          if (Clip.outsideRadius(p1,p2,shape)) continue;
 
-         if ((Clip.clip(p1,p2,shape,clipResult) & Clip.KEEP_A) != 0) return false;
+         if ((Clip.clip(p1,p2,shape,clipResult) & Clip.KEEP_A) != 0) {
+            shapeNumber = i;
+            return false;
+         }
          // it's possible to get inside a block by aligning
          // or by placing blocks carelessly, so only exclude motion that enters
          // a block from outside.  this is all with respect to a single shape,
@@ -727,6 +738,8 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    public boolean atFinish(double[] origin, int[] reg1, int[] reg2) {
       return false;
    }
+
+   public boolean dead() { return false; }
 
    public void setBuffer(LineBuffer buf) {
       this.buf  = buf;
