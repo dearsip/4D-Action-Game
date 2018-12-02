@@ -28,7 +28,7 @@ public class Engine implements IMove {
 
    private RenderRelative renderRelative;
 
-   private double[][] objRetina, objCross, objWin;
+   private double[][] objRetina, objCross, objWin, objDead;
 
    private Display[] display;
 
@@ -89,6 +89,10 @@ public class Engine implements IMove {
       axis = new double[dimSpace][dimSpace];
       initPlayer();
 
+      if (getSaveType() == IModel.SAVE_ACTION
+       || getSaveType() == IModel.SAVE_BLOCK
+       || getSaveType() == IModel.SAVE_SHOOT) ((ActionModel)model).setEngine(this);
+
       sraxis = new double[dimSpace][dimSpace];
       nonFisheyeRetina = ov.retina;
 
@@ -105,10 +109,12 @@ public class Engine implements IMove {
          objRetina = objRetina2;
          objCross  = objCross2;
          objWin    = objWin2;
+         objDead   = objDead2;
       } else {
          objRetina = objRetina3;
          objCross  = objCross3;
          objWin    = objWin3;
+         objDead   = objDead3;
       }
 
       setDisplay(dimSpace,ov.scale,os,true);
@@ -121,6 +127,8 @@ public class Engine implements IMove {
       mt = new MainTransform(reg3);
       st = new SideTransform(reg3);
       ct = new CrossTransform(reg3);
+
+      fall = 0;
 
       if (render) renderAbsolute();
       // else we are loading a saved game, and will render later
@@ -348,8 +356,12 @@ public class Engine implements IMove {
 
    public boolean canMove(int a, double d) {
 
-      Vec.addScaled(reg3,origin,axis[a],d);
-      if ( ! model.canMove(origin,reg3,reg1,reg4) ) return false;
+      if (getSaveType() != IModel.SAVE_ACTION
+       && getSaveType() != IModel.SAVE_BLOCK
+       && getSaveType() != IModel.SAVE_SHOOT) {
+         Vec.addScaled(reg3,origin,axis[a],d);
+         if ( ! model.canMove(origin,reg3,reg1,reg4) ) return false;
+      }
 
       return true;
    }
@@ -359,15 +371,71 @@ public class Engine implements IMove {
    }
 
    public void move(int a, double d) {
-      Vec.addScaled(origin,origin,axis[a],d);
+      final double epsilon = 0.00001;
+      if (getSaveType() != IModel.SAVE_ACTION
+       && getSaveType() != IModel.SAVE_BLOCK
+       && getSaveType() != IModel.SAVE_SHOOT)
+         Vec.addScaled(origin,origin,axis[a],d);
+      else {
+         if (a==1) return;
+         Vec.unitVector(reg3,1);
+         double e = Vec.dot(reg3,axis[a]);
+         Vec.addScaled(reg3,axis[a],reg3,-e);
+         Vec.normalize(reg3,reg3);
+         Vec.scale(reg3,reg3,d);
+         Vec.add(reg3,origin,reg3);
+         if (model.canMove(origin,reg3,reg1,reg4)) {
+            Vec.copy(origin,reg3);
+         } else { // not functioning (climing)
+            Clip.Result clipResult = ((ActionModel)model).getResult();
+            int ib = clipResult.ib;
+            Vec.unitVector(reg3,1);
+            Vec.addScaled(reg3,origin,reg3,(d>0) ? d : -d);
+            if ((Clip.clip(origin,reg3,((GeomModel)model).retrieveShapes()[ib],clipResult) & Clip.KEEP_B) != 0) {
+               Vec.unitVector(reg3,1);
+               Vec.addScaled(origin,origin,reg3,fall*clipResult.b + epsilon);
+            }
+         }
+      }
    }
 
    public void rotateAngle(int a1, int a2, double theta) {
-      Vec.rotateAngle(axis[a1],axis[a2],axis[a1],axis[a2],theta);
+      if (getSaveType() != IModel.SAVE_ACTION
+       && getSaveType() != IModel.SAVE_BLOCK
+       && getSaveType() != IModel.SAVE_SHOOT)
+         Vec.rotateAngle(axis[a1],axis[a2],axis[a1],axis[a2],theta);
+      else {
+         final double epsilon = 0.000001;
+         int dim = origin.length;
+         if (a2==1) {
+            if (a1!=dim-1) return;
+            Vec.copy(reg3,axis[a1]);
+            Vec.copy(reg4,axis[a2]);
+            Vec.rotateAngle(axis[a1],axis[a2],axis[a1],axis[a2],theta);
+            if (axis[a2][1] < epsilon) {
+               Vec.copy(axis[a1],reg3);
+               Vec.copy(axis[a2],reg4);
+            }
+         } else {
+            double asin = Math.toDegrees(Math.asin(axis[a1][1]));
+            if (a1==dim-1) {
+               Vec.rotateAngle(axis[1],axis[a1],axis[1],axis[a1],asin);
+            }
+            Vec.rotateAngle(axis[a1],axis[a2],axis[a1],axis[a2],theta);
+            if (a1==dim-1) {
+               Vec.rotateAngle(axis[a1],axis[1],axis[a1],axis[1],asin);
+            }
+         }
+      }
    }
 
    public Align align() {
-      return new Align(origin,axis);
+      if (getSaveType() != IModel.SAVE_ACTION
+       && getSaveType() != IModel.SAVE_BLOCK
+       && getSaveType() != IModel.SAVE_SHOOT) {
+         return new Align(origin,axis);
+      }
+      return null;
    }
 
    public boolean isAligned() {
@@ -393,7 +461,38 @@ public class Engine implements IMove {
       Vec.copyMatrix(axis,saveAxis);
    }
 
-// --- rendering ---
+   private Clip.Result clipResult;
+   private final double gravity =0.02;
+   private double fall;
+   private final double height = 0.25;
+
+   public void jump() {
+      final double epsilon = 0.001;
+      Vec.unitVector(reg3,1);
+      Vec.addScaled(reg3,origin,reg3,-epsilon);
+      if (! model.canMove(origin,reg3,reg1,reg4) || reg3[1]<0) fall = height;
+   }
+
+   public void fall() {
+      final double epsilon = 0.00001;
+      fall -= gravity;
+      Vec.unitVector(reg3,1);
+      Vec.addScaled(reg3,origin,reg3,fall);
+      if (reg3[1] < epsilon) {
+         fall = 0;
+         origin[1] = epsilon;
+      } else if (model.canMove(origin,reg3,reg1,reg4)) {
+         Vec.copy(origin,reg3);
+      } else {
+         clipResult = ((ActionModel)model).getResult();
+         Vec.unitVector(reg3,1);
+         Vec.addScaled(origin,origin,reg3,fall*clipResult.a + ((fall>0) ? -epsilon : epsilon));
+         fall = 0;
+      }
+      if (atFinish()) win = true;
+   }
+
+   // --- rendering ---
 
    public void renderAbsolute() {
       model.animate();
@@ -402,8 +501,12 @@ public class Engine implements IMove {
    }
 
    private void renderObject(LineBuffer buf, double[][] obj) {
+      renderObject(buf,obj,Color.white);
+   }
+
+   private void renderObject(LineBuffer buf, double[][] obj, Color color) {
       for (int i=0; i<obj.length; i+=2) {
-         buf.add(obj[i],obj[i+1],Color.white);
+         buf.add(obj[i],obj[i+1],color);
       }
    }
 
@@ -422,6 +525,7 @@ public class Engine implements IMove {
       }
 
       if (win) renderObject(bufRelative,objWin);
+      if (model.dead()) renderObject(bufRelative,objDead,Color.red);
 
       renderDisplay();
    }
@@ -508,17 +612,17 @@ public class Engine implements IMove {
       displayInterface.nextFrame();
    }
 
-// --- fixed objects ---
+   // --- fixed objects ---
 
    private static final double[][] objRetina2 = new double[][] {
-         {-1,-1}, { 1,-1},
+      {-1,-1}, { 1,-1},
          { 1,-1}, { 1, 1},
          { 1, 1}, {-1, 1},
          {-1, 1}, {-1,-1}
-      };
+   };
 
    private static final double[][] objRetina3 = new double[][] {
-         {-1,-1,-1}, { 1,-1,-1},
+      {-1,-1,-1}, { 1,-1,-1},
          { 1,-1,-1}, { 1, 1,-1},
          { 1, 1,-1}, {-1, 1,-1},
          {-1, 1,-1}, {-1,-1,-1},
@@ -532,23 +636,23 @@ public class Engine implements IMove {
          { 1,-1,-1}, { 1,-1, 1},
          { 1, 1,-1}, { 1, 1, 1},
          {-1, 1,-1}, {-1, 1, 1}
-      };
+   };
 
    private static final double B = 0.04;
    private static final double[][] objCross2 = new double[][] {
-         {-B, 0}, { B, 0},
+      {-B, 0}, { B, 0},
          { 0,-B}, { 0, B}
-      };
+   };
 
    private static final double C = 0.1;
    private static final double[][] objCross3 = new double[][] {
-         {-C, 0, 0}, { C, 0, 0},
+      {-C, 0, 0}, { C, 0, 0},
          { 0,-C, 0}, { 0, C, 0},
          { 0, 0,-C}, { 0, 0, C}
-      };
+   };
 
    private static final double[][] objWin2 = new double[][] {
-         {-0.8, 0.4}, {-0.8,-0.4},
+      {-0.8, 0.4}, {-0.8,-0.4},
          {-0.8,-0.4}, {-0.6, 0  },
          {-0.6, 0  }, {-0.4,-0.4},
          {-0.4,-0.4}, {-0.4, 0.4},
@@ -560,10 +664,10 @@ public class Engine implements IMove {
          { 0.4,-0.4}, { 0.4, 0.4},
          { 0.4, 0.4}, { 0.8,-0.4},
          { 0.8,-0.4}, { 0.8, 0.4}
-      };
+   };
 
    private static final double[][] objWin3 = new double[][] {
-         {-0.8, 0.4,1}, {-0.8,-0.4,1},
+      {-0.8, 0.4,1}, {-0.8,-0.4,1},
          {-0.8,-0.4,1}, {-0.6, 0,  1},
          {-0.6, 0,  1}, {-0.4,-0.4,1},
          {-0.4,-0.4,1}, {-0.4, 0.4,1},
@@ -575,7 +679,17 @@ public class Engine implements IMove {
          { 0.4,-0.4,1}, { 0.4, 0.4,1},
          { 0.4, 0.4,1}, { 0.8,-0.4,1},
          { 0.8,-0.4,1}, { 0.8, 0.4,1}
-      };
+   };
+
+   private static final double[][] objDead2 = new double[][] {
+      {-1,-1}, { 1, 1}, { 1,-1}, {-1, 1}
+   };
+
+   private static final double[][] objDead3 = new double[][] {
+      {-1,-1,-1}, { 1, 1, 1}, {-1,-1, 1}, { 1, 1,-1}, {-1, 1,-1}, { 1,-1, 1}, { 1,-1,-1}, {-1, 1, 1}
+   };
+
+;
 
 }
 

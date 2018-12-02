@@ -16,16 +16,16 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
 
 // --- fields ---
 
-   private int dim;
-   private Geom.Shape[] shapes;
+   protected int dim;
+   protected Geom.Shape[] shapes;
    private Vector scenery;
    private boolean[] texture;
-   private LineBuffer buf;
-   private Clip.Draw[] clipUnits;
+   protected LineBuffer buf;
+   protected Clip.Draw[] clipUnits;
    private boolean[][] inFront;
    private Geom.Separator[][] separators;
    private boolean useEdgeColor;
-   private Geom.Shape selectedShape;
+   protected Geom.Shape selectedShape;
    private int[] axisDirection; // direction of each axis, chosen when shape selected
    private boolean useSeparation;
    private boolean invertNormals;
@@ -33,16 +33,16 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    private Struct.DrawInfo drawInfo;
    private Struct.ViewInfo viewInfo;
 
-   private double[] origin;
-   private double[] reg1;
-   private double[] reg2;
-   private Clip.Result clipResult;
+   protected double[] origin;
+   protected double[] reg1;
+   protected double[] reg2;
+   protected Clip.Result clipResult;
    private IDraw currentDraw;
 
    private Vector availableColors;
    private Vector availableShapes;
    private Color      addColor;
-   private Geom.Shape addShape;
+   protected Geom.Shape addShape;
    private Color paintColor;
    private int   paintMode; // default 0, correct
 
@@ -50,7 +50,8 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    private HashMap colorNames;
    private HashMap idealNames;
 
-   private int faceNumber; // extra result from findShape
+   protected int faceNumber; // extra result from findShape
+   protected int shapeNumber; // extra result from canMove
 
 // --- construction ---
 
@@ -84,6 +85,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    }
 
    public int getDimension() { return dim; }
+
+   public Geom.Shape getHitShape() {
+      if (shapeNumber == -1) return null;
+      return shapes[shapeNumber]; }
 
    public void addScenery(IScenery o) {
       scenery.add(o);
@@ -132,7 +137,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       }
    }
 
-   private void clearSeparators(int i) {
+   protected void clearSeparators(int i) {
       // not worth checking for removed shapes
       for (int j=0;   j<i;             j++) separators[j][i] = null;
       for (int j=i+1; j<shapes.length; j++) separators[i][j] = null;
@@ -180,7 +185,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       return (shape.systemMove || shape == selectedShape);
    }
 
-   private int indexOf(Geom.Shape shape) {
+   protected int indexOf(Geom.Shape shape) {
       // not worth checking for removed shapes
       for (int i=0; i<shapes.length; i++) {
          if (shapes[i] == shape) return i;
@@ -319,7 +324,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       useSeparation = ! useSeparation;
    }
 
-   private int countSlots() {
+   protected int countSlots() {
       int count = 0;
       for (int i=0; i<shapes.length; i++) {
          if (shapes[i] == null) count++;
@@ -327,14 +332,14 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       return count;
    }
 
-   private int findSlot(int i) {
+   protected int findSlot(int i) {
       for ( ; i<shapes.length; i++) {
          if (shapes[i] == null) return i;
       }
       return -1; // shouldn't happen
    }
 
-   private void reallocate(int len) {
+   protected void reallocate(int len) {
 
       // if one insert is happening, there will probably
       // be more eventually, so allocate in blocks of 10
@@ -488,6 +493,9 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       }
    }
 
+   public void jump() {
+   }
+
 // --- implementation of ISelectShape ---
 
    // the first two aren't in the interface,
@@ -591,7 +599,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       selectedShape.place(); // since we updated and failed
    }
 
-   private boolean isSeparated(Geom.Shape shape, double[] viewOrigin) {
+   public boolean isSeparated(Geom.Shape shape, double[] viewOrigin) {
 
       // not perfect collision detection yet, but it's not bad
       // what can you collide with?
@@ -693,7 +701,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
 
       if ( ! useSeparation ) return true;
 
-      if (p2[1] < 0 && p2[1] < p1[1]) return false; // solid floor
+      if (p2[1] < 0 && p2[1] < p1[1]) {
+         shapeNumber = -1;
+         return false; // solid floor
+      }
       // I once got to negative y by aligning while near the floor
 
       for (int i=0; i<shapes.length; i++) {
@@ -711,7 +722,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
          // prefilter by checking distance to shape against radius
          if (Clip.outsideRadius(p1,p2,shape)) continue;
 
-         if ((Clip.clip(p1,p2,shape,clipResult) & Clip.KEEP_A) != 0) return false;
+         if ((Clip.clip(p1,p2,shape,clipResult) & Clip.KEEP_A) != 0) {
+            shapeNumber = i;
+            return false;
+         }
          // it's possible to get inside a block by aligning
          // or by placing blocks carelessly, so only exclude motion that enters
          // a block from outside.  this is all with respect to a single shape,
@@ -725,6 +739,8 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       return false;
    }
 
+   public boolean dead() { return false; }
+
    public void setBuffer(LineBuffer buf) {
       this.buf  = buf;
    }
@@ -733,6 +749,10 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    }
 
    public void render(double[] origin) {
+     renderer(origin);
+   }
+
+   protected void renderer(double[] origin) {
       buf.clear();
       Vec.copy(this.origin,origin);
 

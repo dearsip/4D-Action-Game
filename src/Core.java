@@ -207,8 +207,12 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
       LinkedList tlist = new LinkedList();
       LinkedList scenery = new LinkedList();
       LinkedList slist = new LinkedList();
+      LinkedList elist = new LinkedList();
       Struct.ViewInfo viewInfo = null;
       Struct.DrawInfo drawInfo = null;
+
+      Struct.FinishInfo finishInfo = null;
+      Struct.BlockInfo blockInfo = null;
 
    // scan for items
 
@@ -243,6 +247,13 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
             drawInfo = (Struct.DrawInfo) o;
          } else if (o instanceof Struct.DimensionMarker) {
             // ignore, we're done with it
+         } else if (o instanceof Struct.FinishInfo) {
+            if (finishInfo != null) throw new Exception("Only one finishInfo command allowed.");
+            finishInfo = (Struct.FinishInfo) o;
+         } else if (o instanceof Struct.BlockInfo) {
+            blockInfo = (Struct.BlockInfo) o;
+         } else if (o instanceof Enemy) {
+            elist.add(o);
          } else {
             throw new Exception("Unused object on stack (" + o.getClass().getName() + ").");
          }
@@ -256,14 +267,19 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
 
       Geom.Shape[] shapes = (Geom.Shape[]) slist.toArray(new Geom.Shape[slist.size()]);
       Train[] trains = (Train[]) tlist.toArray(new Train[tlist.size()]);
+      Enemy[] enemies = (Enemy[]) elist.toArray(new Enemy[elist.size()]);
 
       if (track != null) TrainModel.init(track,trains); // kluge needed for track scale
 
       if (scenery.size() == 0) scenery.add((dtemp == 3) ? new Mat.Mat3() : (IScenery) new Mat.Mat4());
       if (track != null) scenery.add(track); // add last so it draws over other scenery
 
-      GeomModel model = (track != null) ? new TrainModel(dtemp,shapes,drawInfo,viewInfo,track,trains)
-                                        : new GeomModel (dtemp,shapes,drawInfo,viewInfo);
+      GeomModel model;
+      if (finishInfo != null) model = new ActionModel(dtemp,shapes,drawInfo,viewInfo,finishInfo); 
+      else if (enemies.length > 0) model = new ShootModel(dtemp,shapes,drawInfo,viewInfo,enemies);
+      else if (blockInfo != null) model = new BlockModel(dtemp,shapes,drawInfo,viewInfo);
+      else model = (track != null) ? new TrainModel(dtemp,shapes,drawInfo,viewInfo,track,trains)
+                                             : new GeomModel (dtemp,shapes,drawInfo,viewInfo);
       model.addAllScenery(scenery);
 
    // gather dictionary info
@@ -319,7 +335,7 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
    // read file
 
       Context c = DefaultContext.create();
-      c.libDirs.add(new File(".." + File.separator + "data" + File.separator + "lib"));
+      c.libDirs.add(new File("data" + File.separator + "lib"));
       Language.include(c,file);
 
    // build the model

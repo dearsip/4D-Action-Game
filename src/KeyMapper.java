@@ -56,8 +56,8 @@ public class KeyMapper {
       add(new Key(KeyEvent.VK_F,2),KeyBuffer.getKeyNew(7));
       add(new Key(KeyEvent.VK_S,2),KeyBuffer.getKeyNew(8));
       add(new Key(KeyEvent.VK_T,2),KeyBuffer.getKeyNew(9));
-      add(new Key(KeyEvent.VK_I,2),KeyBuffer.getKeyNew(10));
-      add(new Key(KeyEvent.VK_D,2),KeyBuffer.getKeyNew(11));
+      add(new Key(KeyEvent.VK_N,0),KeyBuffer.getKeyNew(10));
+      add(new Key(KeyEvent.VK_M,0),KeyBuffer.getKeyNew(11));
       add(new Key(KeyEvent.VK_I,3),KeyBuffer.getKeyNew(12));
       add(new Key(KeyEvent.VK_K,2),KeyBuffer.getKeyNew(13));
       add(new Key(KeyEvent.VK_J,2),KeyBuffer.getKeyNew(14));

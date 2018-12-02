@@ -40,5 +40,12 @@ public class Struct {
       public int getDimension() { return dim; }
    }
 
-}
+// --- finish info ---
+   public static class FinishInfo {
 
+     public int[] finish;
+   }
+
+// --- block info ---
+   public static class BlockInfo {}
+}

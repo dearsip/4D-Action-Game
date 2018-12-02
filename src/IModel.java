@@ -20,6 +20,7 @@ public interface IModel {
    int getSaveType();
    boolean canMove(double[] p1, double[] p2, int[] reg1, double[] reg2);
    boolean atFinish(double[] origin, int[] reg1, int[] reg2);
+   boolean dead();
 
    void setBuffer(LineBuffer buf);
    void animate();
@@ -28,6 +29,9 @@ public interface IModel {
    final int SAVE_NONE = 0;
    final int SAVE_MAZE = 1;
    final int SAVE_GEOM = 2;
+   final int SAVE_ACTION = 3;
+   final int SAVE_BLOCK = 4;
+   final int SAVE_SHOOT = 5;
 
 }
 

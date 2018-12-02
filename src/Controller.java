@@ -337,7 +337,9 @@ public class Controller implements IClock {
          return true;
       }
       public boolean canRun() {
-         return ! alignMode;
+         return ! alignMode && engine.getSaveType() != IModel.SAVE_ACTION
+                            && engine.getSaveType() != IModel.SAVE_BLOCK
+                            && engine.getSaveType() != IModel.SAVE_SHOOT;
       }
       public boolean isExclusive() {
          return true;
@@ -362,6 +364,11 @@ public class Controller implements IClock {
    private class CommandChangeAlignMode extends Command {
       public boolean isOnPress() {
          return true;
+      }
+      public boolean canRun() {
+         return engine.getSaveType() != IModel.SAVE_ACTION
+             && engine.getSaveType() != IModel.SAVE_BLOCK
+             && engine.getSaveType() != IModel.SAVE_SHOOT;
       }
       public boolean isExclusive() {
          return ! alignMode;
@@ -570,24 +577,27 @@ public class Controller implements IClock {
       }
    }
 
-   private class CommandClick extends NewCommand {
+   private class CommandClick extends NewCommand { // also used as commandjump
       public boolean isExclusive() {
-         return true;
+         return engine.getSaveType() != IModel.SAVE_GEOM;
          // make this into a one-step exclusive command, keeps the tick logic simple
       }
       public boolean isExcluded() {
-         return true;
+         return engine.getSaveType() == IModel.SAVE_GEOM;
          // since click can change the motion target, don't do it while in motion
       }
       public boolean run() {
          if (keysNew != null) {
-            target = keysNew.click(engine.getOrigin(),engine.getViewAxis(),engine.getAxisArray());
-            if (target != null) {
-               engineAlignMode = alignMode; // save
-               alignMode = target.isAligned(); // reasonable default
-            } else {
-               target = engine;
-               alignMode = engineAlignMode; // restore
+            if (engine.getSaveType() != IModel.SAVE_GEOM) keysNew.jump();
+            else {
+               target = keysNew.click(engine.getOrigin(),engine.getViewAxis(),engine.getAxisArray());
+               if (target != null) {
+                  engineAlignMode = alignMode; // save
+                  alignMode = target.isAligned(); // reasonable default
+               } else {
+                  target = engine;
+                  alignMode = engineAlignMode; // restore
+               }
             }
          }
          return false;
@@ -828,6 +838,5 @@ public class Controller implements IClock {
       if (isValid) p.apply(dNew);
       else         p.set(dSave);
    }
-
 }
 

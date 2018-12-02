@@ -23,6 +23,7 @@ public class Colorizer implements IColorize {
    private DynamicArray.OfColor byCell;
    private Color[] byOrientation;
    private Color[] byDirection;
+   private DynamicArray.OfColor byTrace;
 
    private OptionsColor ocCache; // cache only used to detect changes
    private long seedCache;
@@ -37,10 +38,15 @@ public class Colorizer implements IColorize {
       byCell = new DynamicArray.OfColor(dimSpace,limits);
       byOrientation = new Color[  dimSpace];
       byDirection   = new Color[2*dimSpace];
+      byTrace = new DynamicArray.OfColor(dimMap,limits);
 
       ocCache = new OptionsColor();
 
       setOptions(oc,seed,true);
+   }
+
+   public void setTrace(int[] cell) {
+      byTrace.set(cell,Color.gray);
    }
 
 // --- options ---
@@ -77,6 +83,8 @@ public class Colorizer implements IColorize {
 
       generate(byOrientation,colors,random);
       generate(byDirection,  colors,random);
+
+      generateByTrace();
    }
 
 // --- by cell ---
@@ -148,6 +156,16 @@ public class Colorizer implements IColorize {
       }
    }
 
+// --- by trace ---
+
+   private void generateByTrace() {
+      for (DynamicArray.Iterator iTrace = new DynamicArray.Iterator(Permute.sequence(0,dimMap),new int[dimSpace],limits);
+                                 iTrace.hasCurrent(); iTrace.increment()) {
+         byTrace.set(iTrace.current(),Color.white);
+      }
+   }
+      
+
 // --- implementation of IColorize ---
 
    public Color getColor(int[] p, int dir) {
@@ -173,6 +191,10 @@ public class Colorizer implements IColorize {
          color = byDirection[dir];
          break;
 
+      case OptionsColor.COLOR_MODE_BY_TRACE:
+         color = byTrace.get(p);
+         break;
+
       default:
          throw new IllegalArgumentException();
       }
@@ -181,4 +203,3 @@ public class Colorizer implements IColorize {
    }
 
 }
-
