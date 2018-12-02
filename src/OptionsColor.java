@@ -23,8 +23,9 @@ public class OptionsColor implements IValidate {
    public static final int COLOR_MODE_INTERIOR = 1;
    public static final int COLOR_MODE_BY_ORIENTATION = 2;
    public static final int COLOR_MODE_BY_DIRECTION = 3;
+   public static final int COLOR_MODE_BY_TRACE = 4;
 
-   public static final int NCOLOR_MODE = 4;
+   public static final int NCOLOR_MODE = 5;
 
    // assign numbers to all the colors listed in java.awt.Color (except black)
    // so that we can do array stuff with them
@@ -122,7 +123,8 @@ public class OptionsColor implements IValidate {
       if (    colorMode != COLOR_MODE_EXTERIOR
            && colorMode != COLOR_MODE_INTERIOR
            && colorMode != COLOR_MODE_BY_ORIENTATION
-           && colorMode != COLOR_MODE_BY_DIRECTION   ) throw App.getException("OptionsColor.e1");
+           && colorMode != COLOR_MODE_BY_DIRECTION
+           && colorMode != COLOR_MODE_BY_TRACE   ) throw App.getException("OptionsColor.e1");
 
       if (dimSameParallel      < DIM_SAME_MIN || dimSameParallel      > DIM_SAME_MAX) throw App.getException("OptionsColor.e2",new Object[] { new Integer(DIM_SAME_MIN), new Integer(DIM_SAME_MAX) });
       if (dimSamePerpendicular < DIM_SAME_MIN || dimSamePerpendicular > DIM_SAME_MAX) throw App.getException("OptionsColor.e3",new Object[] { new Integer(DIM_SAME_MIN), new Integer(DIM_SAME_MAX) });

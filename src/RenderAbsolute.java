@@ -294,6 +294,7 @@ public class RenderAbsolute {
       Vec.copy(this.origin,origin);
 
       int dir = Grid.toCell(reg3,reg4,origin);
+      ((Colorizer)colorizer).setTrace(reg3);
       if (dir == Dir.DIR_NONE) {
 
          build(reg3,0,Dir.DIR_NONE);

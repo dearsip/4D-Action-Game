@@ -24,12 +24,14 @@ public class PanelColor extends PanelOptions {
    private static Object[] colorModeNames = new Object[] { App.getString("PanelColor.s21"),
                                                            App.getString("PanelColor.s22"),
                                                            App.getString("PanelColor.s23"),
-                                                           App.getString("PanelColor.s24")  };
+                                                           App.getString("PanelColor.s24"),
+                                                           App.getString("PanelColor.s25")  };
 
    private static int[] colorModeValues = new int[] { OptionsColor.COLOR_MODE_EXTERIOR,
                                                       OptionsColor.COLOR_MODE_INTERIOR,
                                                       OptionsColor.COLOR_MODE_BY_ORIENTATION,
-                                                      OptionsColor.COLOR_MODE_BY_DIRECTION };
+                                                      OptionsColor.COLOR_MODE_BY_DIRECTION,
+                                                      OptionsColor.COLOR_MODE_BY_TRACE};
 
 // --- construction ---
 
