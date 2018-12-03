@@ -197,5 +197,50 @@ public class DynamicArray {
       }
    }
 
+// --- integer ---
+
+   public static class OfDir {
+
+   // --- fields ---
+
+      private int dim;
+      private int[] limits;
+      private Object data;
+
+   // --- construction ---
+
+      public OfDir(int dim, int[] limits) {
+         this.dim = dim;
+         this.limits = limits;
+         if (dim == 3) {
+            data = new int[limits[0]][limits[1]][limits[2]];
+         } else {
+            data = new int[limits[0]][limits[1]][limits[2]][limits[3]];
+         }
+      }
+
+   // --- accessors ---
+
+      public int get(int[] p) {
+         if (dim == 3) {
+            return ((int[][][]) data)[p[0]][p[1]][p[2]]-1;
+         } else {
+            return ((int[][][][]) data)[p[0]][p[1]][p[2]][p[3]]-1;
+         }
+      }
+
+      public void set(int[] p, int b) {
+         if (dim == 3) {
+            ((int[][][]) data)[p[0]][p[1]][p[2]] = b+1;
+         } else {
+            ((int[][][][]) data)[p[0]][p[1]][p[2]][p[3]] = b+1;
+         }
+      }
+
+      public boolean inBounds(int[] p) {
+         return DynamicArray.inBounds(p,limits);
+      }
+   }
+
 }
 

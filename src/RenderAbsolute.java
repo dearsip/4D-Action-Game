@@ -174,6 +174,52 @@ public class RenderAbsolute {
       addLine(p1,p2,color);
    }
 
+   private void addVector(int[] p, int dir1, int dir2, Color color) {
+      int a1 = Dir.getAxis(dir1);
+      int a2 = Dir.getAxis(dir2);
+
+      Grid.fromCell(reg1,p);
+      Dir.apply(dir1,reg1,0.5);
+      if (dir1!=dir2) Dir.apply(dir2,reg1,0.25);
+
+      int a3 = -1;
+      int a4 = -1;
+      int a5 = -1;
+      for (int i=0; i<dim; i++) {
+         if (i == a1 || i == a2) continue;
+         if (a3 == -1) { a3 = i; continue; }
+         if (a4 == -1) { a4 = i; continue; }
+         a5 = i;
+      }
+
+      Vec.copy(reg2,reg1);
+
+      if (dir1!=dir2) Dir.apply(dir2,reg2,-0.5);
+      reg2[a3] += 0.25;
+      addLine(reg1,reg2,color);
+
+      reg2[a3] -= 0.5;
+      addLine(reg1,reg2,color);
+      if (a4 >= 0) {
+
+         reg2[a3] += 0.25;
+         reg2[a4] += 0.25;
+         addLine(reg1,reg2,color);
+
+         reg2[a4] -= 0.5;
+         addLine(reg1,reg2,color);
+      }
+      if (a5 >= 0) {
+
+         reg2[a4] += 0.25;
+         reg2[a5] += 0.25;
+         addLine(reg1,reg2,color);
+
+         reg2[a5] -= 0.5;
+         addLine(reg1,reg2,color);
+      }
+   }
+
    private void addTexture(int[] p, int dir, Color color, double edge) {
       int a = Dir.getAxis(dir);
 
@@ -236,7 +282,9 @@ public class RenderAbsolute {
          color5 = (texture[5] && color.equals(COLOR_FINISH)) ? COLOR_FINISH_ALTERNATE : COLOR_FINISH;
       }
 
-      for (int i=1; i<10; i++) {
+      int d = colorizer.getTrace(p);
+      if (texture[1] && d>=0 ) addVector(p,dir,d,color);
+      for (int i=2; i<10; i++) {
 
          Color c = color;
          boolean draw = texture[i];
@@ -294,7 +342,7 @@ public class RenderAbsolute {
       Vec.copy(this.origin,origin);
 
       int dir = Grid.toCell(reg3,reg4,origin);
-      ((Colorizer)colorizer).setTrace(reg3);
+      colorizer.setTrace(reg3);
       if (dir == Dir.DIR_NONE) {
 
          build(reg3,0,Dir.DIR_NONE);

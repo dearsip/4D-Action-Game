@@ -13,8 +13,8 @@ public class BlockModel extends ActionModel {
    private int[] reg4;
    private int[] reg5;
 
-   public BlockModel(int dim, Geom.Shape[] shapes, Struct.DrawInfo drawInfo, Struct.ViewInfo viewInfo) throws Exception {
-      super(dim, shapes, drawInfo, viewInfo, null);
+   public BlockModel(int dim, Geom.Shape[] shapes, Struct.DrawInfo drawInfo, Struct.ViewInfo viewInfo, Struct.FootInfo footInfo) throws Exception {
+      super(dim, shapes, drawInfo, viewInfo, footInfo, null);
       reg4 = new int[dim];
       reg5 = new int[dim];
       addShape = this.shapes[0].copy();

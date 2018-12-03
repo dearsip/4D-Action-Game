@@ -26,6 +26,8 @@ blue 3 true 0 1 grid3
 
 blue 15 true -2 5 grid3
 
+FOOT footinfo
+
 [-2.5 0.5 -2.5] [X+ Y+ Z+] viewinfo
 
 block3 [0.5 1 0.5] scale [2 0 2] translate yellow shapecolor WALK_SHOOT enemy

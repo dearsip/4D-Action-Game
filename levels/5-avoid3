@@ -30,6 +30,8 @@ blue 15 true -2 5 grid3
 
 [0 3 11] finishinfo
 
+FOOT footinfo
+
 block3 [0 2 0] translate white shapecolor
 block3 [1 2 0] translate white shapecolor
 block3 [1 2 1] translate white shapecolor

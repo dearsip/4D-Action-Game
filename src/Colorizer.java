@@ -24,6 +24,7 @@ public class Colorizer implements IColorize {
    private Color[] byOrientation;
    private Color[] byDirection;
    private DynamicArray.OfColor byTrace;
+   private DynamicArray.OfDir trace;
 
    private OptionsColor ocCache; // cache only used to detect changes
    private long seedCache;
@@ -39,14 +40,11 @@ public class Colorizer implements IColorize {
       byOrientation = new Color[  dimSpace];
       byDirection   = new Color[2*dimSpace];
       byTrace = new DynamicArray.OfColor(dimMap,limits);
+      trace = new DynamicArray.OfDir(dimMap,limits);
 
       ocCache = new OptionsColor();
 
       setOptions(oc,seed,true);
-   }
-
-   public void setTrace(int[] cell) {
-      byTrace.set(cell,Color.gray);
    }
 
 // --- options ---
@@ -200,6 +198,26 @@ public class Colorizer implements IColorize {
       }
 
       return color;
+   }
+
+   public void setTrace(int[] p) {
+      byTrace.set(p,Color.gray);
+      if (trace.get(p) == -1) {
+         for (int i=0; i<2*dimSpace; i++) {
+            Dir.apply(i,p,1);
+            if (trace.get(p) != -1) {
+               Dir.apply(i,p,-1);
+               trace.set(p,Dir.getOpposite(i));
+               return;
+            }
+            Dir.apply(i,p,-1);
+         }
+         trace.set(p,-2);
+      }
+   }
+
+   public int getTrace(int[] p) {
+      return trace.get(p);
    }
 
 }

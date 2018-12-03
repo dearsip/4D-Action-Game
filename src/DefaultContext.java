@@ -180,6 +180,10 @@ public class DefaultContext {
       c.dict.put("WALK",        new Double(Enemy.WALK       ));
       c.dict.put("WALK_SHOOT",  new Double(Enemy.WALK_SHOOT ));
 
+      c.dict.put("FOOT",         new Double(Struct.FOOT        ));
+      c.dict.put("COMPASS",      new Double(Struct.COMPASS     ));
+      c.dict.put("FOOT_COMPASS", new Double(Struct.FOOT_COMPASS));
+
       // have to be a little careful because these are 4D,
       // but they'll work in the situations I use them in.
       //
@@ -204,6 +208,7 @@ public class DefaultContext {
       c.dict.put("brown",new Color(128,96,0));
 
       c.dict.put("finishinfo",new Command.FinishInfo());
+      c.dict.put("footinfo",new Command.FootInfo());
       c.dict.put("blockinfo",new Command.BlockInfo());
 
       c.dict.put("enemy",new Command.NewEnemy());

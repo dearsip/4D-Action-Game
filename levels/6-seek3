@@ -33,6 +33,8 @@ blue 15 true -2 5 grid3
 
 [0 3 8] finishinfo
 
+FOOT_COMPASS footinfo
+
 block3 [21 2 1] scale [-10 0 -11] translate white shapecolor
 block3 [1 2 21] scale [-11 0 -10] translate white shapecolor
 block3 [21 2 1] scale [-10 0 11] translate white shapecolor

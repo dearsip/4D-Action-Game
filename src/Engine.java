@@ -19,6 +19,13 @@ public class Engine implements IMove {
    private double[][] axis;
    private boolean win;
 
+   private Clip.Result clipResult;
+   private double fall;
+   private double height;
+   private double gravity;
+   private final double gdef = 18;
+   private final double hdef = 7.5;
+
    private double[][] sraxis;
    private double nonFisheyeRetina; // have to cache this up here for fisheye
 
@@ -81,7 +88,7 @@ public class Engine implements IMove {
 
 // --- games ---
 
-   public void newGame(int dimSpace, IModel model, OptionsView ov, OptionsStereo os, boolean render) {
+   public void newGame(int dimSpace, IModel model, OptionsView ov, OptionsStereo os, OptionsMotion ot, boolean render) {
 
       this.model = model;
 
@@ -129,6 +136,8 @@ public class Engine implements IMove {
       ct = new CrossTransform(reg3);
 
       fall = 0;
+      gravity = gdef/ot.frameRate/ot.frameRate;
+      height = hdef/ot.frameRate;
 
       if (render) renderAbsolute();
       // else we are loading a saved game, and will render later
@@ -263,13 +272,16 @@ public class Engine implements IMove {
    // these last two option-setting functions are not invoked via the controller,
    // so they need to end with an explicit re-render call
 
-   public void setOptions(OptionsColor oc, OptionsView ov, OptionsStereo os, OptionsSeed oe) {
+   public void setOptions(OptionsColor oc, OptionsView ov, OptionsStereo os, OptionsSeed oe, OptionsMotion ot) {
 
       model.setOptions(oc,oe.colorSeed,ov.depth,ov.texture);
 
       setRetina(ov.retina);
 
       setDisplay(dimSpaceCache,ov.scale,os,false);
+
+      gravity = gdef/ot.frameRate/ot.frameRate;
+      height = hdef/ot.frameRate;
 
       renderAbsolute(); // not always necessary, but who cares, it's fast enough
    }
@@ -460,11 +472,6 @@ public class Engine implements IMove {
       Vec.copy(origin,saveOrigin);
       Vec.copyMatrix(axis,saveAxis);
    }
-
-   private Clip.Result clipResult;
-   private final double gravity =0.02;
-   private double fall;
-   private final double height = 0.25;
 
    public void jump() {
       final double epsilon = 0.001;
@@ -688,8 +695,6 @@ public class Engine implements IMove {
    private static final double[][] objDead3 = new double[][] {
       {-1,-1,-1}, { 1, 1, 1}, {-1,-1, 1}, { 1, 1,-1}, {-1, 1,-1}, { 1,-1, 1}, { 1,-1,-1}, {-1, 1, 1}
    };
-
-;
 
 }
 

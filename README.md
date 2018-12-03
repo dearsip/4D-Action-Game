@@ -10,35 +10,24 @@
 - [プレイ動画（自作）](https://www.nicovideo.jp/watch/sm33133173)
 
 ## 起動方法
-`4DAction.jar`と`current.properties`を同ディレクトリに置いて`4DAction.jar`を実行。
+- `4DAction.jar`と`current.properties`を同ディレクトリに置いて`4DAction.jar`を実行。（`current.properties`は各種設定を保存している。）
+- `levels`及び`data`内のファイルはゲーム内の`Menu > Load`から開く。`data`内のファイルを開くには、`data`が`4DAction.jar`と同じディレクトリに置かれている必要がある。（`data/lib`内のファイルをインポートするため。）
+
+## コンパイル
+```shell
+$ git clone https://github.com/dearsip/4D-Action-Game.git
+$ cd src
+$ javac *.java
+$ jar -cfm 4DAction.jar MANIFEST.MF *.class *.properties
+```
 
 ## 操作方法
-### 主な操作（一部のモードのみ）
 - `W,E,R,S,D,F,A,Z`:移動
 - `U,I,O,J,K,L`:カメラ操作
-- スペースキー:ジャンプ
-- `ctrl+R`:リスタート
-- `ctrl+J`:次のファイル
-- `ctrl+K`:前のファイル
-### その他
-キーコンフィグはゲーム内の`Meny > Options > Keys`（こちらは変更内容が`current.properties`に保存される）とソースコードの`KeyMapper.java`から可能。
-このデータでは以下の図の通り変更を加えてある。
+- スペースキー: ブロック選択、ジャンプ
+- `N`:ブロック配置、発砲
 
-![control](https://gyazo.com/eca1b5e73f611e05db2bcd918d363c9f.png)
-![control2](https://gyazo.com/ed846ed6ae92a6355b13e4d253f8fa6f.png)
+キーコンフィグはゲーム内の`Meny > Options > Keys`（こちらは変更内容が`current.properties`に保存される）とソースコードの`KeyMapper.java`から可能。操作の詳細はそれぞれ[Keys](http://www.urticator.net/maze/ref-keys.html)、[Controls](http://www.urticator.net/blocks/v6/controls.html)を参照。
 
-操作の詳細はそれぞれ[Keys](http://www.urticator.net/maze/ref-keys.html)、[Controls](http://www.urticator.net/blocks/v6/controls.html)を参照。
-
-## 開発目標
-ゲームとして成立している程度の完成度の4Dゲームの開発。
-
-## 更新予定
-- 十字テクスチャの実装（済）
-- 描画距離制限の実装（済）
-- Mazeで通過したセルを着色する機能の実装（済）
-- マウス+ホイールによるカメラ操作の実装（保留）
-- MineCraft風のブロック配置・破壊プログラムの実装（済）
-- FPS要素の実装（済）
-
-## このbranchについて
-`levels`内の`shoot`と付いたファイルが対応している。`N`キーで発砲。
+## LICENSE
+[MIT](https://github.com/dearsip/4D-Action-Game/blob/master/LICENSE)

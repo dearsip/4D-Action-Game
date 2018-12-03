@@ -27,7 +27,8 @@ public class StandEnemy extends Enemy {
       random = new Random();
       wshoot = 30;
       wmove = 0;
-      int dim = shape.vertex[0].length;
+      if (move) shape.setNoUserMove();
+      int dim = shape.getDimension();
       walk = new double[dim];
       reg1 = new double[dim];
       reg2 = new double[dim];

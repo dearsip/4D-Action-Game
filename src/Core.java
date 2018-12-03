@@ -106,7 +106,7 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
       oa.oeNext = new OptionsSeed();
 
       IModel model = new MapModel(this.dim,oa.omCurrent,oc(),oa.oeCurrent,ov());
-      engine.newGame(this.dim,model,ov(),oa.opt.os,true);
+      engine.newGame(this.dim,model,ov(),oa.opt.os,ot(),true);
 
       controller.setOptions(oa.opt.okc,ot());
       controller.setKeysNew(null);
@@ -169,7 +169,7 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
       oa.opt.os = os;
       oa.opt.oi = oi;
 
-      engine.setOptions(oc(),ov(),os,oa.oeCurrent);
+      engine.setOptions(oc(),ov(),os,oa.oeCurrent,ot());
    }
 
    /**
@@ -184,7 +184,7 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
       this.oa.oeCurrent.forceSpecified(); // make blanks into new random seeds
       this.oa.oeNext = oa.oeNext;
 
-      engine.setOptions(oc(),ov(),this.oa.opt.os,this.oa.oeCurrent);
+      engine.setOptions(oc(),ov(),this.oa.opt.os,this.oa.oeCurrent,ot());
 
       keyMapper3.setOptions(this.oa.opt.ok3,this.oa.opt.okc);
       keyMapper4.setOptions(this.oa.opt.ok4,this.oa.opt.okc);
@@ -212,6 +212,7 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
       Struct.DrawInfo drawInfo = null;
 
       Struct.FinishInfo finishInfo = null;
+      Struct.FootInfo footInfo = null;
       Struct.BlockInfo blockInfo = null;
 
    // scan for items
@@ -250,6 +251,8 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
          } else if (o instanceof Struct.FinishInfo) {
             if (finishInfo != null) throw new Exception("Only one finishInfo command allowed.");
             finishInfo = (Struct.FinishInfo) o;
+         } else if (o instanceof Struct.FootInfo) {
+            footInfo = (Struct.FootInfo) o;
          } else if (o instanceof Struct.BlockInfo) {
             blockInfo = (Struct.BlockInfo) o;
          } else if (o instanceof Enemy) {
@@ -275,9 +278,9 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
       if (track != null) scenery.add(track); // add last so it draws over other scenery
 
       GeomModel model;
-      if (finishInfo != null) model = new ActionModel(dtemp,shapes,drawInfo,viewInfo,finishInfo); 
-      else if (enemies.length > 0) model = new ShootModel(dtemp,shapes,drawInfo,viewInfo,enemies);
-      else if (blockInfo != null) model = new BlockModel(dtemp,shapes,drawInfo,viewInfo);
+      if (finishInfo != null) model = new ActionModel(dtemp,shapes,drawInfo,viewInfo,footInfo,finishInfo); 
+      else if (enemies.length > 0) model = new ShootModel(dtemp,shapes,drawInfo,viewInfo,footInfo,enemies);
+      else if (blockInfo != null) model = new BlockModel(dtemp,shapes,drawInfo,viewInfo,footInfo);
       else model = (track != null) ? new TrainModel(dtemp,shapes,drawInfo,viewInfo,track,trains)
                                              : new GeomModel (dtemp,shapes,drawInfo,viewInfo);
       model.addAllScenery(scenery);
@@ -365,7 +368,7 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
       model.setTexture(texture);
 
       // model already constructed
-      engine.newGame(dim,model,ov(),oa.opt.os,true);
+      engine.newGame(dim,model,ov(),oa.opt.os,ot(),true);
 
       controller.setOptions(oa.opt.okc,ot());
       controller.setKeysNew(model);
@@ -541,6 +544,26 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
 
       t.newLine();
 
+   // blockinfo
+
+      if (model.getSaveType() == IModel.SAVE_BLOCK) {
+         t.putWord("blockinfo").newLine().newLine();
+      }
+
+   // finishinfo
+
+      if (model.getSaveType() == IModel.SAVE_ACTION) {
+         writeIntVec(t,((ActionModel)model).retrieveFinish());
+         t.space().putWord("finishinfo").newLine().newLine();
+      }
+
+   // footinfo
+
+      if (model.getSaveType() == IModel.SAVE_ACTION
+       || model.getSaveType() == IModel.SAVE_BLOCK) {
+         t.putInteger(((ActionModel)model).retrieveFoot()).space().putWord("footinfo").newLine().newLine();
+      }
+
    // viewinfo
 
       writeVec(t,origin);
@@ -682,7 +705,7 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
       // oeNext is not modified by loading a game
 
       IModel model = new MapModel(dim,oa.omCurrent,oc(),oa.oeCurrent,ov());
-      engine.newGame(dim,model,ov(),oa.opt.os,false);
+      engine.newGame(dim,model,ov(),oa.opt.os,ot(),false);
 
       controller.setOptions(oa.opt.okc,ot());
       controller.setKeysNew(null);

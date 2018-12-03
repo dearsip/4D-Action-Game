@@ -32,6 +32,11 @@ public class Struct {
 
 // --- dimension marker ---
 
+   public static final int NONE = 0;
+   public static final int FOOT = 1;
+   public static final int COMPASS = 2;
+   public static final int FOOT_COMPASS = 3;
+
    public static class DimensionMarker implements IDimension {
 
       private int dim;
@@ -44,6 +49,13 @@ public class Struct {
    public static class FinishInfo {
 
      public int[] finish;
+   }
+
+// --- foot info ---
+   public static class FootInfo {
+
+      public boolean foot;
+      public boolean compass;
    }
 
 // --- block info ---

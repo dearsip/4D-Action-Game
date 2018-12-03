@@ -182,7 +182,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    }
 
    private boolean isMobile(Geom.Shape shape) {
-      return (shape.systemMove || shape == selectedShape);
+      return (shape.systemMove || shape.noUserMove || shape == selectedShape);
    }
 
    protected int indexOf(Geom.Shape shape) {

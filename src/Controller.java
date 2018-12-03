@@ -81,10 +81,19 @@ public class Controller implements IClock {
       // the frame rate and command times are all positive,
       // so the number of steps will always be at least 1 ...
 
-      nMove        = (int) Math.ceil(ot.frameRate * ot.timeMove       );
-      nRotate      = (int) Math.ceil(ot.frameRate * ot.timeRotate     );
-      nAlignMove   = (int) Math.ceil(ot.frameRate * ot.timeAlignMove  );
-      nAlignRotate = (int) Math.ceil(ot.frameRate * ot.timeAlignRotate);
+      if (engine.getSaveType() == IModel.SAVE_ACTION
+       || engine.getSaveType() == IModel.SAVE_BLOCK
+       || engine.getSaveType() == IModel.SAVE_SHOOT) {
+         nMove        = (int) Math.ceil(ot.frameRate * 0.5);
+         nRotate      = (int) Math.ceil(ot.frameRate * 0.5);
+         nAlignMove   = (int) Math.ceil(ot.frameRate * 0.5);
+         nAlignRotate = (int) Math.ceil(ot.frameRate * 0.5);
+      } else {
+         nMove        = (int) Math.ceil(ot.frameRate * ot.timeMove       );
+         nRotate      = (int) Math.ceil(ot.frameRate * ot.timeRotate     );
+         nAlignMove   = (int) Math.ceil(ot.frameRate * ot.timeAlignMove  );
+         nAlignRotate = (int) Math.ceil(ot.frameRate * ot.timeAlignRotate);
+      }
 
       // ... therefore, the distances will never exceed 1,
       // and the angles will never exceed 90 degrees
@@ -579,16 +588,19 @@ public class Controller implements IClock {
 
    private class CommandClick extends NewCommand { // also used as commandjump
       public boolean isExclusive() {
-         return engine.getSaveType() != IModel.SAVE_GEOM;
+         return engine.getSaveType() != IModel.SAVE_GEOM
+             && engine.getSaveType() != IModel.SAVE_NONE;
          // make this into a one-step exclusive command, keeps the tick logic simple
       }
       public boolean isExcluded() {
-         return engine.getSaveType() == IModel.SAVE_GEOM;
+         return engine.getSaveType() == IModel.SAVE_GEOM
+             && engine.getSaveType() != IModel.SAVE_NONE;
          // since click can change the motion target, don't do it while in motion
       }
       public boolean run() {
          if (keysNew != null) {
-            if (engine.getSaveType() != IModel.SAVE_GEOM) keysNew.jump();
+            if (engine.getSaveType() != IModel.SAVE_GEOM
+             && engine.getSaveType() != IModel.SAVE_NONE) keysNew.jump();
             else {
                target = keysNew.click(engine.getOrigin(),engine.getViewAxis(),engine.getAxisArray());
                if (target != null) {

@@ -13,8 +13,8 @@ public class ShootModel extends ActionModel {
    private int[] reg4;
    private boolean dead;
 
-   public ShootModel(int dim, Geom.Shape[] shapes, Struct.DrawInfo drawInfo, Struct.ViewInfo viewInfo, Enemy[] enemies) throws Exception {
-      super(dim, TrainModel.join(shapes,getShapes(enemies)), drawInfo, viewInfo, null);
+   public ShootModel(int dim, Geom.Shape[] shapes, Struct.DrawInfo drawInfo, Struct.ViewInfo viewInfo, Struct.FootInfo footInfo, Enemy[] enemies) throws Exception {
+      super(dim, TrainModel.join(shapes,getShapes(enemies)), drawInfo, viewInfo, footInfo, null);
       this.enemies = enemies;
       for (int i=0; i<enemies.length; i++) {
          enemies[i].setModel(this);
@@ -172,6 +172,7 @@ public class ShootModel extends ActionModel {
                shape = GeomUtil.rect(d);
             }
          } catch (Exception e) {}
+         shape.setNoUserMove();
          shape.setShapeColor(Color.white);
          shape.place(center,axis);
          Vec.copy(reg3,axis[dim-1]);
