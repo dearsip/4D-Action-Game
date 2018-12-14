@@ -39,8 +39,8 @@ public class Colorizer implements IColorize {
       byCell = new DynamicArray.OfColor(dimSpace,limits);
       byOrientation = new Color[  dimSpace];
       byDirection   = new Color[2*dimSpace];
-      byTrace = new DynamicArray.OfColor(dimMap,limits);
-      trace = new DynamicArray.OfDir(dimMap,limits);
+      byTrace = new DynamicArray.OfColor(dimSpace,limits);
+      trace = new DynamicArray.OfDir(dimSpace,limits);
 
       ocCache = new OptionsColor();
 
