@@ -294,6 +294,7 @@ public class Controller implements IClock {
       }
       public boolean run() {
          int a = (this.a == -1) ? dim-1 : this.a;
+         engine.inputMove[2*a-(sign-1)/2] = true;
          if (alignMode) {
             target.move(a,sign*dActive);
             if (--nActive > 0) {
@@ -326,6 +327,7 @@ public class Controller implements IClock {
       public boolean run() {
          int a1 = (this.a1 == -1) ? dim-1 : this.a1;
          int a2 = (this.a2 == -1) ? dim-1 : this.a2;
+         if (this.a1 == -1) engine.inputRotate[2*a2-(sign-1)/2] = true;
          if (alignMode) {
             target.rotateAngle(a1,a2,sign*dActive);
             if (--nActive > 0) {

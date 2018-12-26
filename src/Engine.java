@@ -35,7 +35,10 @@ public class Engine implements IMove {
 
    private RenderRelative renderRelative;
 
-   private double[][] objRetina, objCross, objWin, objDead;
+   private double[][] objRetina, objCross, objWin, objDead, objCrossL, objCrossR;
+   private double[][][] objArrowL, objArrowR;
+   public boolean[] inputMove;
+   public boolean[] inputRotate;
 
    private Display[] display;
 
@@ -117,12 +120,22 @@ public class Engine implements IMove {
          objCross  = objCross2;
          objWin    = objWin2;
          objDead   = objDead2;
+         objCrossL = objCrossL2;
+         objCrossR = objCrossR2;
+         objArrowL = objArrowL2;
+         objArrowR = objArrowR2;
       } else {
          objRetina = objRetina3;
          objCross  = objCross3;
          objWin    = objWin3;
          objDead   = objDead3;
+         objCrossL = objCrossL3;
+         objCrossR = objCrossR3;
+         objArrowL = objArrowL3;
+         objArrowR = objArrowR3;
       }
+      inputMove = new boolean[2*dimSpace];
+      inputRotate = new boolean[2*(dimSpace-1)];
 
       setDisplay(dimSpace,ov.scale,os,true);
 
@@ -534,6 +547,21 @@ public class Engine implements IMove {
       if (win) renderObject(bufRelative,objWin);
       if (model.dead()) renderObject(bufRelative,objDead,Color.red);
 
+      renderObject(bufRelative,objCrossL);
+      renderObject(bufRelative,objCrossR);
+      for (int i=0; i<inputMove.length; i++) {
+         if (inputMove[i]) {
+            renderObject(bufRelative,objArrowL[i]);
+            inputMove[i] = false;
+         }
+      }
+      for (int i=0; i<inputRotate.length; i++) {
+         if (inputRotate[i]) {
+            renderObject(bufRelative,objArrowR[i]);
+            inputRotate[i] = false;
+         }
+      }
+
       renderDisplay();
    }
 
@@ -696,5 +724,68 @@ public class Engine implements IMove {
       {-1,-1,-1}, { 1, 1, 1}, {-1,-1, 1}, { 1, 1,-1}, {-1, 1,-1}, { 1,-1, 1}, { 1,-1,-1}, {-1, 1, 1}
    };
 
-}
+   private static final double[][] objCrossL2 = new double[][] {
+      {-1-1.5*B,-1-B}, {-1-0.5*B,-1-B},
+      {-1-B,-1-1.5*B}, {-1-B,-1-0.5*B}
+   };
 
+   private static final double[][] objCrossR2 = new double[][] {
+      { 1+1.5*B,-1-B}, { 1+0.5*B,-1-B},
+      { 1+B,-1-1.5*B}, { 1+B,-1-0.5*B}
+   };
+
+   private static final double[][][] objArrowL2 = new double[][][] {
+      { {-1-B,-1-B}, {-1+B,-1-B} },
+      { {-1-B,-1-B}, {-1-3*B,-1-B} },
+      { {-1-B,-1-B}, {-1-B,-1+B} },
+      { {-1-B,-1-B}, {-1-B,-1-3*B} },
+      { {-1,-1}, {-1-2*B,-1-2*B}, {-1-2*B,-1}, {-1,-1-2*B} },
+      { {-1,-1-B}, {-1-B,-1}, {-1-B,-1}, {-1-2*B,-1-B},
+        {-1-2*B,-1-B}, {-1-B,-1-2*B}, {-1-B,-1-2*B}, {-1,-1-B} }
+   };
+
+   private static final double[][][] objArrowR2 = new double[][][] {
+      { { 1+B,-1-B}, { 1+3*B,-1-B} },
+      { { 1+B,-1-B}, { 1-B,-1-B} },
+      { { 1+B,-1-B}, { 1+B,-1+B} },
+      { { 1+B,-1-B}, { 1+B,-1-3*B} }
+   };
+
+   private static final double[][] objCrossL3 = new double[][] {
+      {-1-1.5*C,-1-C,0}, {-1-0.5*C,-1-C,0},
+      {-1-C,-1-1.5*C,0}, {-1-C,-1-0.5*C,0},
+      {-1-C,-1-C,-0.5*C}, {-1-C,-1-C,0.5*C}
+   };
+
+   private static final double[][] objCrossR3 = new double[][] {
+      { 1+1.5*C,-1-C,0}, { 1+0.5*C,-1-C,0},
+      { 1+C,-1-1.5*C,0}, { 1+C,-1-0.5*C,0},
+      { 1+C,-1-C,-0.5*C}, { 1+C,-1-C,0.5*C}
+   };
+
+   private static final double[][][] objArrowL3 = new double[][][] {
+      { {-1-C,-1-C,0}, {-1+C,-1-C,0} },
+      { {-1-C,-1-C,0}, {-1-3*C,-1-C,0} },
+      { {-1-C,-1-C,0}, {-1-C,-1+C,0} },
+      { {-1-C,-1-C,0}, {-1-C,-1-3*C,0} },
+      { {-1-C,-1-C,0}, {-1-C,-1-C,2*C} },
+      { {-1-C,-1-C,0}, {-1-C,-1-C,-2*C} },
+      { {-1,-1,C}, {-1-2*C,-1-2*C,-C}, {-1-2*C,-1,C}, {-1,-1-2*C,-C},
+        {-1-2*C,-1-2*C,C}, {-1,-1,-C}, {-1,-1-2*C,C}, {-1-2*C,-1,-C} },
+      { {-1,-1-C,0}, {-1-C,-1,0}, {-1-C,-1,0}, {-1-2*C,-1-C,0},
+        {-1-2*C,-1-C,0}, {-1-C,-1-2*C,0}, {-1-C,-1-2*C,0}, {-1,-1-C,0},
+        {-1-C,-1-C,C}, {-1,-1-C,0}, {-1,-1-C,0}, {-1-C,-1-C,-C},
+        {-1-C,-1-C,-C}, {-1-2*C,-1-C,0}, {-1-2*C,-1-C,0}, {-1-C,-1-C,C},
+        {-1-C,-1,0}, {-1-C,-1-C,C}, {-1-C,-1-C,C}, {-1-C,-1-2*C,0},
+        {-1-C,-1-2*C,0}, {-1-C,-1-C,-C}, {-1-C,-1-C,-C}, {-1-C,-1,0} }
+   };
+
+   private static final double[][][] objArrowR3 = new double[][][] {
+      { { 1+C,-1-C,0}, { 1+3*C,-1-C,0} },
+      { { 1+C,-1-C,0}, { 1-C,-1-C,0} },
+      { { 1+C,-1-C,0}, { 1+C,-1+C,0} },
+      { { 1+C,-1-C,0}, { 1+C,-1-3*C,0} },
+      { { 1+C,-1-C,0}, { 1+C,-1-C,2*C} },
+      { { 1+C,-1-C,0}, { 1+C,-1-C,-2*C} }
+   };
+}
