@@ -8,6 +8,7 @@
 - [原作者による解説](http://www.urticator.net/maze/)
 - [解説動画（自作）](https://www.nicovideo.jp/watch/sm31889569)
 - [プレイ動画（自作）](https://www.nicovideo.jp/watch/sm33133173)
+- [追加機能の紹介動画（自作）](https://www.nicovideo.jp/watch/sm34391640)
 
 ## 起動方法
 - [Java SE Development Kit](https://www.oracle.com/technetwork/java/javase/downloads/index.html)をインストールする。
