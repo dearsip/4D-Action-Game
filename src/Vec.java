@@ -26,6 +26,12 @@ public class Vec {
       }
    }
 
+   public static void swap(double[] p1, double[] p2, double[] reg) {
+      copy(reg, p1);
+      copy(p1, p2);
+      copy(p2, reg);
+   }
+
    public static void copyMatrix(double[][] dest, double[][] src) {
       for (int i=0; i<dest.length; i++) {
          Vec.copy(dest[i],src[i]);
@@ -149,6 +155,13 @@ public class Vec {
 
    public static double dist(double[] p1, double[] p2) {
       return Math.sqrt(dist2(p1,p2));
+   }
+
+   // for 3d, src and dest must be different
+   public static void cross(double[] dest, double[] p1, double[] p2) {
+      dest[0] = p1[1] * p2[2] - p1[2] * p2[1];
+      dest[1] = p1[2] * p2[0] - p1[0] * p2[2];
+      dest[2] = p1[0] * p2[1] - p1[1] * p2[0];
    }
 
 // --- rotation ---

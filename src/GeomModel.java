@@ -32,6 +32,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    private boolean hideSel; // hide selection marks
    private Struct.DrawInfo drawInfo;
    private Struct.ViewInfo viewInfo;
+   protected Clip.GJKTester gjk;
 
    protected double[] origin;
    protected double[] reg1;
@@ -75,6 +76,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       hideSel = false;
       this.drawInfo = drawInfo;
       this.viewInfo = viewInfo;
+      gjk = new Clip.GJKTester(dim);
 
       origin = new double[dim];
       reg1 = new double[dim];
@@ -159,12 +161,12 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
                Geom.Separator sep;
 
                if (isMobile(s1) || isMobile(s2)) {
-                  sep = Clip.staticSeparate(s1,s2,/* any = */ false);
+                  sep = gjk.separate(s1, s2);//Clip.staticSeparate(s1,s2,/* any = */ false);
                   // don't remember the separator
                } else {
                   sep = separators[i][j];
                   if (sep == null) {
-                     sep = Clip.staticSeparate(s1,s2,/* any = */ false);
+                     sep = gjk.separate(s1, s2);//Clip.staticSeparate(s1,s2,/* any = */ false);
                      separators[i][j] = sep;
                   }
                }
@@ -315,7 +317,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       LinkedList todo = new LinkedList();
       LinkedList done = new LinkedList();
       listShapes(todo,done);
-      Scramble.scramble(todo,done,alignMode,origin);
+      Scramble.scramble(todo,done,alignMode,origin,gjk);
 
       clearAllSeparators();
    }
@@ -429,7 +431,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
          todo.add(shape);
       }
 
-      Scramble.scramble(todo,done,alignMode,origin);
+      Scramble.scramble(todo,done,alignMode,origin,gjk);
    }
 
    public void removeShape(double[] origin, double[] viewAxis) {
@@ -612,7 +614,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
 
       for (int i=0; i<shapes.length; i++) {
          if (shapes[i] == null || shapes[i] == shape || shapes[i].systemMove) continue;
-         if ( ! Clip.isSeparated(shape,shapes[i]) ) return false;
+         if ( ! Clip.isSeparated(shape,shapes[i], gjk) ) return false;
       }
       // note, we don't handle the case where we're already collided.
       // that's part of why there's a command to turn off separation.

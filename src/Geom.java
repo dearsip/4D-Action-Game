@@ -38,6 +38,12 @@ public class Geom {
       return e;
    }
 
+   public static int[][] clone2(int[][] j) {
+      j = (int[][]) j.clone();
+      for (int i=0; i<j.length; i++) j[i] = (int[]) j[i].clone();
+      return j;
+   }
+
    private static void vatranslate(double[][] vertex, double[] d) {
       for (int i=0; i<vertex.length; i++) Vec.add(vertex[i],vertex[i],d);
    }
@@ -259,6 +265,7 @@ public class Geom {
       public Subface[] subface;
       public Edge[] edge;
       public double[][] vertex;
+      public int[][] nbv;
       public double[] shapecenter; // for size testing; connected to radius
       public double[] aligncenter; // for alignment, snapping, and rotation
       public double radius;
@@ -306,6 +313,7 @@ public class Geom {
          s.subface = subface; // share
          s.edge = clone2(edge);
          s.vertex = clone2(vertex);
+         s.nbv = clone2(nbv);
          s.shapecenter = clone1(shapecenter);
          s.aligncenter = clone1(aligncenter);
          s.radius = radius;
@@ -455,6 +463,7 @@ public class Geom {
       public void calculate() {
          calcCenters();
          calcSubfaces();
+         calcNeighbors();
 
          int dim = getDimension();
 
@@ -592,6 +601,24 @@ public class Geom {
             }
          }
          return n;
+      }
+
+      public void calcNeighbors() {
+         LinkedList[] list = new LinkedList[vertex.length];
+         for (int i = 0; i < vertex.length; i++) {
+            list[i] = new LinkedList();
+         }
+         for (int i = 0; i < edge.length; i++) {
+            list[edge[i].iv1].add(edge[i].iv2);
+            list[edge[i].iv2].add(edge[i].iv1);
+         }
+         nbv = new int[vertex.length][];
+         for (int i = 0; i < vertex.length; i++) {
+            nbv[i] = new int[list[i].size()];
+            for (int j = 0; j < nbv[i].length; j++) {
+               nbv[i][j] = (int) list[i].get(j);
+            }
+         }
       }
 
       public void setShapeColor(Color color) {

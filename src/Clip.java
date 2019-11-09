@@ -400,7 +400,7 @@ public class Clip {
       return Geom.nullSeparator;
    }
 
-   public static boolean isSeparated(Geom.Shape s1, Geom.Shape s2) {
+   public static boolean isSeparated(Geom.Shape s1, Geom.Shape s2, GJKTester gjk) {
 
       // super-fast test, even better than the test in dynamicSeparate
       double d = s1.radius + s2.radius;
@@ -414,13 +414,13 @@ public class Clip {
       // find a separator for a railcar, but railcars haven't animated yet.
       // it's just not worth getting into it.
 
-      return (staticSeparate(s1,s2,/* any = */ true) != Geom.nullSeparator);
+      return (gjk.separate(s1, s2) != Geom.nullSeparator);
    }
 
-   public static boolean isSeparated(Geom.Shape shape, LinkedList list) {
+   public static boolean isSeparated(Geom.Shape shape, LinkedList list, GJKTester gjk) {
       Iterator i = list.iterator();
       while (i.hasNext()) {
-         if ( ! isSeparated(shape,(Geom.Shape) i.next()) ) return false;
+         if ( ! isSeparated(shape,(Geom.Shape) i.next(),gjk) ) return false;
       }
       return true;
    }
@@ -502,6 +502,110 @@ public class Clip {
       }
       // now y = height
       return true;
+   }
+
+// --- GJK algorithm ---
+
+   public static class GJKTester {
+
+      Geom.Shape[] s;
+      double[][] p, reg;
+      int[][] v;
+      double[] t, n;
+      final static double epsilon = 0.000001;
+
+      public GJKTester(int dim) {
+         s = new Geom.Shape[2];
+         p = new double[dim+1][];
+         v = new int[dim+1][];
+         for (int i = 0; i <= dim; i++) {
+            p[i] = new double[dim];
+            v[i] = new int[2];
+         }
+         t = new double[2];
+         n = new double[dim];
+         reg = new double[2][];
+         for (int i = 0; i < 2; i++) {
+            reg[i] = new double[dim];
+         }
+         Geom.Shape[] s = new Geom.Shape[2];
+      }
+
+      public Geom.Separator separate(Geom.Shape s0, Geom.Shape s1) {
+         s[0] = s0;
+         s[1] = s1;
+         n = new double[s0.getDimension()];
+         Vec.sub(n, s[1].shapecenter, s[0].shapecenter);
+         if (!Vec.normalizeTry(n, n)) return Geom.nullSeparator;
+         v[0][0] = 0; v[0][1] = 0;
+         minkSupport(0, 0);
+         Vec.scale(n, n, -1);
+         minkSupport(0, 1);
+         if (Vec.dot(n, p[1]) < epsilon) {System.out.println(t[1] + t[0]); return new Geom.NormalSeparator(n, t[1], -t[0], -1);}
+         Vec.cross(n, p[0], p[1]);
+         if (!Vec.normalizeTry(n, n)) return Geom.nullSeparator;
+         if (Vec.dot(n, p[0]) > 0) Vec.scale(n, n, -1);
+         minkSupport(0, 2);
+         if (Vec.dot(n, p[2]) < epsilon) {System.out.println(t[1] + t[0]); return new Geom.NormalSeparator(n, t[1], -t[0], -1);}
+         Vec.sub(reg[0], p[1], p[0]);
+         Vec.sub(reg[1], p[2], p[0]);
+         Vec.cross(n, reg[0], reg[1]);
+         Vec.normalize(n, n);
+         if (Vec.dot(n, p[0]) > 0) {
+            Vec.swap(p[1], p[2], reg[0]);
+            int i = v[1][0]; v[1][0] = v[2][0]; v[2][0] = i;
+                i = v[1][1]; v[1][1] = v[2][1]; v[2][1] = i;
+            Vec.scale(n, n, -1);
+         }
+         minkSupport(1, 3);
+         if (Vec.dot(n, p[3]) < epsilon) {System.out.println(t[1] + t[0]); return new Geom.NormalSeparator(n, t[1], -t[0], -1);}
+         label: for (int count = 0; count < 20; count++) {
+            for (int i = 0; i < 3; i++) {
+               int a = (i + 1) % 3; int b = (i + 2) % 3;
+               Vec.sub(reg[0], p[a], p[3]);
+               Vec.sub(reg[1], p[b], p[3]);
+               Vec.cross(n, reg[0], reg[1]);
+               Vec.normalize(n, n);
+               if (Vec.dot(n, p[3]) < epsilon) {
+                  Vec.copy(p[i], p[3]); v[1][0] = v[3][0]; v[1][1] = v[3][0];
+                  minkSupport(i, 3);
+                  if (Vec.dot(n, p[3]) < epsilon) {System.out.println(t[1] + t[0]); return new Geom.NormalSeparator(n, t[1], -t[0], -1);}
+                  continue label;
+               }
+            }
+            return Geom.nullSeparator;
+         }
+         {System.out.println(t[1] + t[0]); return new Geom.NormalSeparator(n, t[1], -t[0], -1);}
+      }
+
+      private void minkSupport(int from, int to) {
+         support(p[to], false, from, to, 1);
+         support(reg[0], true, from, to, 0);
+         Vec.sub(p[to], p[to], reg[0]);
+      }
+
+      private void support(double[] dest, boolean inv, int from, int to, int r) {
+         Vec.scale(reg[1], n, (inv) ? -1 : 1);
+         int next = v[from][r];
+         int now = -1;
+         int prev;
+         double m = Vec.dot(s[r].vertex[next], reg[1]);
+         while (next != now) {
+            prev = now;
+            now = next;
+            for (int i : s[r].nbv[now]) {
+               if (i == prev) continue;
+               double d = Vec.dot(s[r].vertex[i], reg[1]);
+               if (d > m) {
+                  m = d;
+                  next = i;
+               }
+            }
+         }
+         Vec.copy(dest, s[r].vertex[now]);
+         t[r] = m;
+         v[to][r] = now;
+      }
    }
 
 // --- test code ---
