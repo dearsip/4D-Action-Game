@@ -157,7 +157,32 @@ public class Vec {
       return Math.sqrt(dist2(p1,p2));
    }
 
-   // for 3d, src and dest must be different
+   public static void perpendicular(double[] dest, double[] p, double epsilon) {
+      double d = 1;
+      for (int i = 0; i < dest.length; i++) {
+         unitVector(dest, i);
+         addScaled(dest, dest, p, -dot(p, dest) / norm2(p));
+         d = norm(dest);
+         if (d > epsilon) break;
+      }
+      scale(dest, dest, 1/d);
+   }
+
+   public static void perpendicular(double[] dest, double[] p1, double[] p2, double[] reg, double epsilon) {
+      double d = 1;
+      double d1 = norm2(p1);
+      addScaled(reg, p2, p1, -dot(p2, p1) / norm(p1));
+      double d2 = norm2(reg);
+      for (int i = 0; i < dest.length; i++) {
+         unitVector(dest, i);
+         addScaled(dest, dest, p1, -dot(p1, dest) / d1);
+         addScaled(dest, dest, reg, -dot(reg, dest) / d2);
+         d = norm(dest);
+         if (d > epsilon) break;
+      }
+      scale(dest, dest, 1/d);
+   }
+
    public static void cross(double[] dest, double[] p1, double[] p2) {
       dest[0] = p1[1] * p2[2] - p1[2] * p2[1];
       dest[1] = p1[2] * p2[0] - p1[0] * p2[2];
