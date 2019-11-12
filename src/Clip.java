@@ -526,11 +526,10 @@ public class Clip {
          }
          t = new double[2];
          n = new double[dim];
-         reg = new double[dim-1][];
+         reg = new double[dim][];
          for (int i = 0; i < reg.length; i++) {
             reg[i] = new double[dim];
          }
-         Geom.Shape[] s = new Geom.Shape[2];
       }
       
       /*public Geom.Separator separate(Geom.Shape s0, Geom.Shape s1) {
@@ -542,27 +541,34 @@ public class Clip {
          s[0] = s0;
          s[1] = s1;
          n = new double[dim];
-         Vec.sub(n, s[0].shapecenter, s[1].shapecenter);
+         Vec.sub(reg[dim-1], s[1].shapecenter, s[0].shapecenter);
+         Vec.scale(n, reg[dim-1], 1);
          if (!Vec.normalizeTry(n, n)) return Geom.nullSeparator;
          v[0][0] = 0; v[0][1] = 0;
          minkSupport(0, 0);
          if (Vec.dot(n, p[0]) < epsilon) return new Geom.NormalSeparator(n, t[1], t[0], -1);
 
-         Vec.scale(n, p[0], -1);
+         Vec.sub(reg[0], p[0], reg[dim-1]);
+         //Vec.scale(n, n, -1);
+         Vec.perpendicular(n, reg[0], epsilon);
+         if (Vec.dot(n, p[0]) < 0) Vec.scale(n, n, -1);
          minkSupport(0, 1);
          if (Vec.dot(n, p[1]) < epsilon) return new Geom.NormalSeparator(n, t[1], t[0], -1);
 
-         Vec.sub(reg[0], p[1], p[0]);
-         Vec.perpendicular(n, reg[0], epsilon);
-         if (Vec.dot(n, p[0]) > 0) Vec.scale(n, n, -1);
+         Vec.sub(reg[0], p[0], reg[dim-1]);
+         Vec.sub(reg[1], p[1], reg[dim-1]);
+         if (dim == 3) Vec.cross(n, reg[0], reg[1]);
+         else  Vec.perpendicular(n, reg[0], reg[1], reg[2], epsilon);
+         if (Vec.dot(n, p[0]) < 0) Vec.scale(n, n, -1);
          minkSupport(0, 2);
          if (Vec.dot(n, p[2]) < epsilon) return new Geom.NormalSeparator(n, t[1], t[0], -1);
 
          if (dim == 4) {
-            Vec.sub(reg[0], p[1], p[0]);
-            Vec.sub(reg[1], p[2], p[0]);
-            Vec.perpendicular(n, reg[0], reg[1], reg[2], epsilon);
-            if (Vec.dot(n, p[0]) > 0) Vec.scale(n, n, -1);
+            Vec.sub(reg[0], p[0], reg[dim-1]);
+            Vec.sub(reg[1], p[1], reg[dim-1]);
+            Vec.sub(reg[2], p[2], reg[dim-1]);
+            Vec.cross(n, reg[0], reg[1], reg[2]);
+            if (Vec.dot(n, p[0]) < 0) Vec.scale(n, n, -1);
             minkSupport(0, 3);
             if (Vec.dot(n, p[3]) < epsilon) return new Geom.NormalSeparator(n, t[1], t[0], -1);
          }
@@ -575,7 +581,8 @@ public class Clip {
             Vec.cross(n, reg[0], reg[1], reg[2]);
          }
          Vec.normalize(n, n);
-         if (Vec.dot(n, p[0]) > 0) {
+         double d = Vec.dot(n, p[0]);
+         if (d > 0) {
             Vec.swap(p[1], p[2], reg[0]);
             int i = v[1][0]; v[1][0] = v[2][0]; v[2][0] = i;
                 i = v[1][1]; v[1][1] = v[2][1]; v[2][1] = i;
@@ -586,8 +593,8 @@ public class Clip {
          label: for (int count = 0; count < 20; count++) {
             for (int i = 0; i < dim; i++) {
                int a = (i + 1) % dim;
-               int b = (i + ((dim==3 || i%2>0)?2:3)) % dim;
-               int c = (i + ((dim==3 || i%2>0)?3:2)) % dim; 
+               int b = (i + ((dim==3 || i%2==0)?2:3)) % dim;
+               int c = (i + ((dim==3 || i%2==0)?3:2)) % dim;
                Vec.sub(reg[0], p[a], p[dim]);
                Vec.sub(reg[1], p[b], p[dim]);
                if (dim == 3) Vec.cross(n, reg[0], reg[1]);
@@ -597,7 +604,7 @@ public class Clip {
                }
                Vec.normalize(n, n);
                if (Vec.dot(n, p[dim]) < epsilon) {
-                  Vec.copy(p[i], p[dim]); v[i][0] = v[dim][0]; v[i][1] = v[dim][0];
+                  Vec.copy(p[i], p[dim]); v[i][0] = v[dim][0]; v[i][1] = v[dim][1];
                   minkSupport(i, dim);
                   if (Vec.dot(n, p[dim]) < epsilon) return new Geom.NormalSeparator(n, t[1], t[0], -1);
                   continue label;

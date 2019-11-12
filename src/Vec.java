@@ -171,7 +171,7 @@ public class Vec {
    public static void perpendicular(double[] dest, double[] p1, double[] p2, double[] reg, double epsilon) {
       double d = 1;
       double d1 = norm2(p1);
-      addScaled(reg, p2, p1, -dot(p2, p1) / norm(p1));
+      addScaled(reg, p2, p1, -dot(p1, p2) / d1);
       double d2 = norm2(reg);
       for (int i = 0; i < dest.length; i++) {
          unitVector(dest, i);
@@ -428,6 +428,15 @@ public class Vec {
          dest[i] = 2*random.nextDouble()-1;
       }
       if (! normalizeTry(dest,dest)) unitVector(dest,0);
+   }
+
+   public static String toString(double[] src) {
+      String s = "(" + src[0];
+      for (int i = 1; i < src.length; i++) {
+         s += ", " + src[i];
+      }
+      s += ")";
+      return s;
    }
 }
 
