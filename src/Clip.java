@@ -598,15 +598,20 @@ public class Clip {
                   Vec.cross(n, reg[0], reg[1], reg[2]);
                }
                Vec.normalize(n, n);
-               if (Vec.dot(n, p[dim]) < epsilon) {
+               d = Vec.dot(n, p[dim]);
+               if (d < 0) {
                   Vec.copy(p[i], p[dim]); v[i][0] = v[dim][0]; v[i][1] = v[dim][1];
                   minkSupport(i, dim);
                   if (Vec.dot(n, p[dim]) < epsilon) return new Geom.NormalSeparator(n, t[1], t[0], -1);
                   continue label;
                }
+               if (d < epsilon) {
+                  minkSupport(dim, dim);
+                  if (Vec.dot(n, p[dim]) < epsilon) return new Geom.NormalSeparator(n, t[1], t[0], -1);
+               }
             }
             return Geom.nullSeparator;
-         }
+         }System.out.println("i");
       return new Geom.NormalSeparator(n, t[1], t[0], -1);
       }
 

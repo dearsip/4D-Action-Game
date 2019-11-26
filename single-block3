@@ -1,0 +1,5 @@
+"library" include
+
+block3 [2 0 0 0] translate
+block3 [-2 0 0 0] translate
+

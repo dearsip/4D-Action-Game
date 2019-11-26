@@ -1,146 +1,22 @@
-shape 0(600 vertices)
-shape 1(600 vertices)
-29800
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+86700
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-102200
+78900
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-77300
+77800
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-46700
+72900
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-104100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-31200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-31500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-31400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-35400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-29800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-30700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-31900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-34200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-33100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-30200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-33100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-25500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-24500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-24800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-34500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-24900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-18300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-56800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-18500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-20100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-30300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-22300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-20900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-20300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-28300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-20100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-23900
+29100
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -148,7 +24,191 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-18900
+31300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+34500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+31600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+32400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+41900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+31800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+33500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+31700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+33000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+25500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+23700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+23200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+33200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+23900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+23400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+35200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+23400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+18000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+18700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+18000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+18300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+18000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+18300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+18200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+25200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+32200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+25600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+18200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+18400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+21200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+32200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+31300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+18700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17700
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -156,31 +216,19 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-18600
+18700
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-19800
+18800
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-19100
+19500
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-19100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-21000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-18900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-20500
+18400
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -192,179 +240,11 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-19300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-20700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-18800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-20500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-21000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-20200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-20600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-23500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-21300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-30600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-16200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-18300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
 15100
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-13100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-15100
+12100
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -372,15 +252,11 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-13300
+12700
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-12900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13100
+15000
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -388,7 +264,35 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-16000
+13200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13300
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -396,51 +300,15 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-16000
+12200
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-15300
+12900
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-16800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12600
+12900
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -448,11 +316,55 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
+12300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
 12500
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-14300
+13100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12500
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -460,11 +372,7 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-15900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14700
+12400
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -472,251 +380,7 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-12800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
 12300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-22500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-15100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-22600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-24400
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -724,287 +388,11 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-14100
+12500
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-14000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-15300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-22400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-23400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-10900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-22300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-18700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-18200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-20000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-18100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-21000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-15800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-15500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-16800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-18300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19900
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-19600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-16800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-22700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13500
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-15300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-12400
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11100
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14300
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-13000
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-11800
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-17700
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14200
+12200
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -1012,23 +400,15 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-12700
+12400
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-14600
+12300
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-14200
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-14600
-
-shape 0 (600 vertices)
-shape 1 (600 vertices)
-20900
+10900
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -1036,27 +416,35 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-12800
+12700
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-14600
+12600
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-13900
+12900
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-17600
+12500
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-10300
+12100
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
-10200
+11500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11900
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
@@ -1064,9 +452,1581 @@ shape 1 (600 vertices)
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
+11500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
 11800
 
 shape 0 (600 vertices)
 shape 1 (600 vertices)
+11500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+21700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+29700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+9800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
 11200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+14300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+14600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+22800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+20400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+19600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+418300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+660700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+611100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+670700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+669600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+605900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+8087800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+569600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+589600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+228800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+536700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+595600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+19200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+32000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+393400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+592200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+368100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+606400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+576500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+579200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+574400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+584600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+430000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+578900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+608000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+564500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+578600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+573200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+571300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+558800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+14700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+18400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+425700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+432700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+676500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+638400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+576700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+597500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+548000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+601800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+222800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+553300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+650700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+608300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+654400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+453300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+457000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+377900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+601000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+594100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+592700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+562500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+579600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+173200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+616800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+601300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+336100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+14200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+419000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+433300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+585600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+614600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+559000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+660800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+534400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+553700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+604900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+355200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+554800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+612000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+556800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+536400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+585300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+561400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+603400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+547100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+639400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+561000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+576100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+152000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+15900
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+16600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+433700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+445300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+614600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+574400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+675800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+600400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+636100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+309200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+574500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+597300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+597700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+176700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+17200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+14800
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12400
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12300
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+14000
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13600
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+14200
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+13100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+12500
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+11100
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10700
+
+shape 0 (600 vertices)
+shape 1 (600 vertices)
+10000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1400
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1300
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1300
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1400
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1300
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1300
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+4600
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1300
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1600
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1600
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1600
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1400
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1200
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1100
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1400
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1500
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1400
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1400
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1500
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1500
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1600
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1800
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+3900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1800
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1800
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1600
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1600
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1500
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1500
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1500
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1600
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1500
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1500
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1800
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1800
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+5300
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+5000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+2000
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1900
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1800
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1500
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1800
+
+shape 0 (8 vertices)
+shape 1 (8 vertices)
+1500
 
