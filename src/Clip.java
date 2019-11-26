@@ -531,11 +531,6 @@ public class Clip {
             reg[i] = new double[dim];
          }
       }
-      
-      /*public Geom.Separator separate(Geom.Shape s0, Geom.Shape s1) {
-         if (dim == 3) return separate3(s0, s1);
-         else return separate4(s0, s1);
-      }*/
 
       public Geom.Separator separate(Geom.Shape s0, Geom.Shape s1) {
          s[0] = s0;
