@@ -588,13 +588,12 @@ public class Controller implements IClock {
 
    private class CommandClick extends NewCommand { // also used as commandjump
       public boolean isExclusive() {
-         return engine.getSaveType() != IModel.SAVE_GEOM
-             && engine.getSaveType() != IModel.SAVE_NONE;
+         return engine.getSaveType() == IModel.SAVE_GEOM
+             || engine.getSaveType() == IModel.SAVE_NONE;
          // make this into a one-step exclusive command, keeps the tick logic simple
       }
       public boolean isExcluded() {
-         return engine.getSaveType() == IModel.SAVE_GEOM
-             && engine.getSaveType() != IModel.SAVE_NONE;
+         return true;
          // since click can change the motion target, don't do it while in motion
       }
       public boolean run() {
