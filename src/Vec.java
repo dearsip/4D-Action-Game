@@ -26,6 +26,12 @@ public class Vec {
       }
    }
 
+   public static void swap(double[] p1, double[] p2, double[] reg) {
+      copy(reg, p1);
+      copy(p1, p2);
+      copy(p2, reg);
+   }
+
    public static void copyMatrix(double[][] dest, double[][] src) {
       for (int i=0; i<dest.length; i++) {
          Vec.copy(dest[i],src[i]);
@@ -149,6 +155,66 @@ public class Vec {
 
    public static double dist(double[] p1, double[] p2) {
       return Math.sqrt(dist2(p1,p2));
+   }
+
+   public static void perpendicular(double[] dest, double[] p, double epsilon) {
+      double d = 1;
+      for (int i = 0; i < dest.length; i++) {
+         unitVector(dest, i);
+         addScaled(dest, dest, p, -dot(p, dest) / norm2(p));
+         d = norm(dest);
+         if (d > epsilon) break;
+      }
+      scale(dest, dest, 1/d);
+   }
+
+   public static void perpendicular(double[] dest, double[] p1, double[] p2, double[] reg, double epsilon) {
+      double d = 1;
+      double d1 = norm2(p1);
+      addScaled(reg, p2, p1, -dot(p1, p2) / d1);
+      double d2 = norm2(reg);
+      for (int i = 0; i < dest.length; i++) {
+         unitVector(dest, i);
+         addScaled(dest, dest, p1, -dot(p1, dest) / d1);
+         addScaled(dest, dest, reg, -dot(reg, dest) / d2);
+         d = norm(dest);
+         if (d > epsilon) break;
+      }
+      scale(dest, dest, 1/d);
+   }
+
+   public static void cross(double[] dest, double[] p1, double[] p2) {
+      dest[0] = p1[1] * p2[2] - p1[2] * p2[1];
+      dest[1] = p1[2] * p2[0] - p1[0] * p2[2];
+      dest[2] = p1[0] * p2[1] - p1[1] * p2[0];
+   }
+
+   public static void cross(double[] dest, double[] p1, double[] p2, double[] p3) {
+      
+      dest[0] =   p1[1] * p2[2] * p3[3]
+                + p1[3] * p2[1] * p3[2]
+                + p1[2] * p2[3] * p3[1]
+                - p1[3] * p2[2] * p3[1]
+                - p1[1] * p2[3] * p3[2]
+                - p1[2] * p2[1] * p3[3];
+      dest[1] = - p1[2] * p2[3] * p3[0]
+                - p1[3] * p2[0] * p3[2]
+                - p1[0] * p2[2] * p3[3]
+                + p1[0] * p2[3] * p3[2]
+                + p1[2] * p2[0] * p3[3]
+                + p1[3] * p2[2] * p3[0];
+      dest[2] =   p1[3] * p2[0] * p3[1]
+                + p1[0] * p2[1] * p3[3]
+                + p1[1] * p2[3] * p3[0]
+                - p1[1] * p2[0] * p3[3]
+                - p1[3] * p2[1] * p3[0]
+                - p1[0] * p2[3] * p3[1];
+      dest[3] = - p1[0] * p2[1] * p3[2]
+                - p1[1] * p2[2] * p3[0]
+                - p1[2] * p2[0] * p3[1]
+                + p1[2] * p2[1] * p3[0]
+                + p1[0] * p2[2] * p3[1]
+                + p1[1] * p2[0] * p3[2];
    }
 
 // --- rotation ---
@@ -362,6 +428,15 @@ public class Vec {
          dest[i] = 2*random.nextDouble()-1;
       }
       if (! normalizeTry(dest,dest)) unitVector(dest,0);
+   }
+
+   public static String toString(double[] src) {
+      String s = "(" + src[0];
+      for (int i = 1; i < src.length; i++) {
+         s += ", " + src[i];
+      }
+      s += ")";
+      return s;
    }
 }
 

@@ -182,7 +182,7 @@ public class Scramble {
 
 // --- control function ---
 
-   public static void scramble(LinkedList todo, LinkedList done, boolean alignMode, double[] origin) {
+   public static void scramble(LinkedList todo, LinkedList done, boolean alignMode, double[] origin, Clip.GJKTester gjk) {
       Clip.Result clipResult = new Clip.Result();
 
       /*
@@ -206,7 +206,7 @@ public class Scramble {
             } else {
                generalScramble(shape,width);
             }
-            if (isSeparated(shape,done,origin,clipResult)) break;
+            if (isSeparated(shape,done,origin,clipResult,gjk)) break;
             width += increment;
             // gradually expand to get more room
          }
@@ -228,7 +228,7 @@ public class Scramble {
       return Align.isAligned(shape.aligncenter,shape.axis);
    }
 
-   public static boolean isSeparated(Geom.Shape shape, LinkedList done, double[] origin, Clip.Result clipResult) {
+   public static boolean isSeparated(Geom.Shape shape, LinkedList done, double[] origin, Clip.Result clipResult, Clip.GJKTester gjk) {
 
       // what can you collide with?
 
@@ -238,7 +238,7 @@ public class Scramble {
 
    // 2. other blocks
 
-      if ( ! Clip.isSeparated(shape,done) ) return false;
+      if ( ! Clip.isSeparated(shape,done,gjk) ) return false;
 
    // 3. user viewpoint (fast but rare, check last)
 

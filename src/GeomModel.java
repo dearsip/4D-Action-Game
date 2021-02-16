@@ -3,6 +3,8 @@
  */
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -32,6 +34,9 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
    private boolean hideSel; // hide selection marks
    private Struct.DrawInfo drawInfo;
    private Struct.ViewInfo viewInfo;
+   protected Clip.GJKTester gjk;
+   File file;
+	private static String ls = System.getProperty("line.separator");
 
    protected double[] origin;
    protected double[] reg1;
@@ -75,6 +80,8 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       hideSel = false;
       this.drawInfo = drawInfo;
       this.viewInfo = viewInfo;
+      gjk = new Clip.GJKTester(dim);
+      file = new File("../separateLog.txt");
 
       origin = new double[dim];
       reg1 = new double[dim];
@@ -159,12 +166,12 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
                Geom.Separator sep;
 
                if (isMobile(s1) || isMobile(s2)) {
-                  sep = Clip.staticSeparate(s1,s2,/* any = */ false);
+                  sep = separate(s1, s2, i, j);//Clip.staticSeparate(s1,s2,/* any = */ false);
                   // don't remember the separator
                } else {
                   sep = separators[i][j];
                   if (sep == null) {
-                     sep = Clip.staticSeparate(s1,s2,/* any = */ false);
+                     sep = separate(s1, s2, i, j);//Clip.staticSeparate(s1,s2,/* any = */ false);
                      separators[i][j] = sep;
                   }
                }
@@ -179,6 +186,20 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       // note that in general inFront is not transitive.  with long blocks
       // you can easily construct cycles where one is in front of the next
       // all the way around.
+   }
+
+   private Geom.Separator separate(Geom.Shape s1, Geom.Shape s2, int i1, int i2) {
+      long time = System.nanoTime();
+      Geom.Separator sep = gjk.separate(s1, s2);
+      time = System.nanoTime() - time;
+      try {
+         FileWriter w = new FileWriter(file, true);
+         w.write("shape "+i1+" ("+s1.vertex.length+" vertices)"+ls);
+         w.write("shape "+i2+" ("+s2.vertex.length+" vertices)"+ls);
+         w.write(time+ls+ls);
+         w.close();
+      } catch (Exception e) {System.out.println(e);}
+      return sep;
    }
 
    private boolean isMobile(Geom.Shape shape) {
@@ -315,7 +336,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
       LinkedList todo = new LinkedList();
       LinkedList done = new LinkedList();
       listShapes(todo,done);
-      Scramble.scramble(todo,done,alignMode,origin);
+      Scramble.scramble(todo,done,alignMode,origin,gjk);
 
       clearAllSeparators();
    }
@@ -429,7 +450,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
          todo.add(shape);
       }
 
-      Scramble.scramble(todo,done,alignMode,origin);
+      Scramble.scramble(todo,done,alignMode,origin,gjk);
    }
 
    public void removeShape(double[] origin, double[] viewAxis) {
@@ -612,7 +633,7 @@ public class GeomModel implements IModel, IKeysNew, IMove, ISelectShape {
 
       for (int i=0; i<shapes.length; i++) {
          if (shapes[i] == null || shapes[i] == shape || shapes[i].systemMove) continue;
-         if ( ! Clip.isSeparated(shape,shapes[i]) ) return false;
+         if ( ! Clip.isSeparated(shape,shapes[i], gjk) ) return false;
       }
       // note, we don't handle the case where we're already collided.
       // that's part of why there's a command to turn off separation.
