@@ -6,6 +6,7 @@
 
 ## Links
 - [原作者による解説](http://www.urticator.net/maze/)
+- [追加要素の紹介動画](https://youtu.be/i9g9Q2sXKv8)
 
 ## 起動方法
 - [Java SE Development Kit](https://www.oracle.com/technetwork/java/javase/downloads/index.html)をインストールする。
