@@ -1,7 +1,0 @@
-"library" include
-"sky4" include
-
-block4
-
-blue 15 true -2 5 grid4
-
