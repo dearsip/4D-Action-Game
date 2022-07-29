@@ -219,11 +219,12 @@ public class Engine implements IMove {
       return model.getSaveType();
    }
 
-   public void save(IStore store) throws ValidationException {
+   public void save(IStore store, OptionsMap om) throws ValidationException {
 
       store.putObject(KEY_ORIGIN,origin);
       store.putObject(KEY_AXIS,axis);
       store.putBoolean(KEY_WIN,win);
+      if (getSaveType() == IModel.SAVE_MAZE) ((MapModel)model).save(store, om);
    }
 
 // --- options ---

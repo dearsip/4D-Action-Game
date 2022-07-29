@@ -737,7 +737,7 @@ public class Core implements IOptions, IStorable, KeyListener, FocusListener {
       store.putObject(KEY_OPTIONS_SEED,oa.oeCurrent);
       store.putBoolean(KEY_ALIGN_MODE,controller.getAlignMode());
 
-      engine.save(store);
+      engine.save(store,om());
    }
 
 // --- implementation of KeyListener ---

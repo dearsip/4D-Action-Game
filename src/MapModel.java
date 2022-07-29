@@ -101,5 +101,8 @@ public class MapModel implements IModel {
       renderAbsolute.run(origin);
    }
 
+   public void save(IStore store, OptionsMap om) throws ValidationException {
+      map.save(store, om);
+   }
 }
 
